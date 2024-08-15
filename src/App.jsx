@@ -12,6 +12,14 @@ import Cart from './Components/Cart'
 import { ToastContainer } from 'react-toastify';
 import Payment from './Pages/Payment'
 import Orders from './Pages/Orders'
+import AdminHome from './Pages/AdminHome'
+import AllUsers from './Components/Admin/AllUsers'
+import Dashbord from './Components/Admin/Dashbord'
+import AddProducts from './Components/Admin/AddProducts'
+import EditProducts from './Components/Admin/EditProducts'
+import UserDetails from './Components/Admin/UserDetails'
+import NestedModal from './Components/Admin/EditModal'
+import Allorders from './Components/Admin/Allorders'
 
 
 
@@ -26,6 +34,7 @@ function App() {
   <BrowserRouter>
   <Routes>
   <Route path='/' element={<Home/>}/>
+  <Route path='/admin/:id' element={<AdminHome/>}/>
   <Route path='/shop' element={<Products/>}/>
   <Route path='/Regisrter' element={<Register/>}/>
   <Route path='/Login' element={<Login/>}/>
@@ -33,6 +42,13 @@ function App() {
   <Route path='/Cart' element={<Cart/>}/>
   <Route path='/Payment' element={<Payment/>}/>
   <Route path='/Orders' element={<Orders/>}/>
+  <Route path='/allusers' element={<AllUsers/>}/>
+  <Route path='/dashbord' element={<Dashbord/>}/>
+  <Route path='/addproducts' element={<AddProducts/>}/>
+  <Route path='/Editproducts' element={<EditProducts/>}/>
+  <Route path='/Userdetails/:id' element={<UserDetails/>}/>
+  <Route path='/EditModal' element={<NestedModal/>}/>
+  <Route path='/Allorders' element={<Allorders/>}/>
 
 
 </Routes>

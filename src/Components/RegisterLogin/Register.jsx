@@ -35,7 +35,9 @@ const initiolvalue={
     password:"",
     cpassword:"",
     Cart:[],
-    orders:[]
+    orders:[],
+    orderedProducts:[]
+    
 
 }
 

@@ -32,33 +32,35 @@ import {
   }     
 
 const Login = () => {
+  const[users,setusers]=useState([])
     let navigate=useNavigate()
-
-
-const chackUserExists=async (email)=>{
-    const response=await axios.get("http://localhost:3000/users")
-    
-    
-    const user=response.data.find((user1)=>user1.email===email)
-    localStorage.setItem("id",user.id)
-    return response.data.find((user)=>user.email===email) !== undefined;
-  }
 
 
     const {values,handleBlur,handleChange,handleSubmit, errors}=useFormik({
         initialValues:initiolvalue,
         validationSchema:signupValidation, 
         onSubmit:async(values)=>{
-            console.log(values);
-            
-            if(await chackUserExists(values.email)){
-              notify("login complited success fully", "success")
-              
-               navigate('/')
-        
-            }else{
-                notify("account not found","error")
-            }
+
+        const response = await axios.get("http://localhost:3000/users")
+        const user=response.data.find((user)=>user.email===values.email)
+
+        if(user&& user.admin===true){
+          localStorage.setItem("id",user.id)
+          navigate('/admin/dashbord')
+          notify("admin logined success fully","success")
+
+        }else if(user){
+          localStorage.setItem("id",user.id)
+          navigate('/')
+          notify("login complite success fully","success")
+
+        }else{
+          notify("invalid email or password");
+        }
+
+           
+         
+          
 
         }
     })

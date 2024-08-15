@@ -5,7 +5,7 @@
       "name": "Baby Diapers",
       "description": "Soft and absorbent baby diapers for newborns.",
       "category": "Feeding",
-      "price": 50,
+      "price": "500",
       "stock_quantity": 1,
       "brand": "Huggies",
       "details": "size: Newborn, pack_size: 100 count",
@@ -16,7 +16,7 @@
       "name": "Baby Stroller",
       "description": "Lightweight and compact stroller with easy folding mechanism.",
       "category": "Feeding",
-      "price": 3000,
+      "price": "3000",
       "stock_quantity": 1,
       "brand": "Graco",
       "details": "Gray , weight_limit :50 lbs",
@@ -27,7 +27,7 @@
       "name": "Baby Bottle",
       "description": "Anti-colic baby bottle with soft silicone nipple.",
       "category": "Feeding",
-      "price": 200,
+      "price": "200",
       "stock_quantity": 1,
       "brand": "Philips Avent",
       "details": "9 oz, BPA-free plastic",
@@ -164,111 +164,66 @@
       "brand": "Summer Infant",
       "details": "color: White,   material: Vinyl,   dimensions: 32 x 16 inches",
       "images": "https://m.media-amazon.com/images/I/41bYDU-FiXL._SX300_SY300_QL70_FMwebp_.jpg"
+    },
+    {
+      "id": "16 ",
+      "name": "Rainy Day Print",
+      "description": "Babyhug Full Sleeves Below Knee Length Transparent Raincoat",
+      "price": 350,
+      "category": "clothes",
+      "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15915684a.webp",
+      "image": "g"
+    },
+    {
+      "id": "f4d8",
+      "name": "Xylophone with Piano - Blue",
+      "description": "Engages baby with colourful look and tuned percussion",
+      "price": "540.00",
+      "category": "Toys",
+      "images": "https://1ststep.com/cdn/shop/products/W44A5295_n.jpg?v=1677922813"
     }
   ],
   "users": [
     {
-      "id": "b6c4",
-      "name": "sdf",
-      "email": "jjj@b.com",
-      "password": "12345",
-      "cpassword": "12345",
-      "Cart": [
-        {
-          "id": "1",
-          "name": "Baby Diapers",
-          "description": "Soft and absorbent baby diapers for newborns.",
-          "category": "Feeding",
-          "price": 50,
-          "stock_quantity": 1,
-          "brand": "Huggies",
-          "details": "size: Newborn, pack_size: 100 count",
-          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
-        },
-        {
-          "id": "2",
-          "name": "Baby Stroller",
-          "description": "Lightweight and compact stroller with easy folding mechanism.",
-          "category": "Feeding",
-          "price": 3000,
-          "stock_quantity": 1,
-          "brand": "Graco",
-          "details": "Gray , weight_limit :50 lbs",
-          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
-        }
-      ],
-      "orders": {
-        "name": "shibily",
-        "namber": "08137945631",
-        "pinCode": "44444",
-        "address": "kakkanjeri malappuram chelari po",
-        "area": "kinfra",
-        "city": "calicaut"
-      },
-      "cartProducts": [
-        {
-          "id": "1",
-          "name": "Baby Diapers",
-          "description": "Soft and absorbent baby diapers for newborns.",
-          "category": "Feeding",
-          "price": 50,
-          "stock_quantity": 1,
-          "brand": "Huggies",
-          "details": "size: Newborn, pack_size: 100 count",
-          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
-        },
-        {
-          "id": "2",
-          "name": "Baby Stroller",
-          "description": "Lightweight and compact stroller with easy folding mechanism.",
-          "category": "Feeding",
-          "price": 3000,
-          "stock_quantity": 1,
-          "brand": "Graco",
-          "details": "Gray , weight_limit :50 lbs",
-          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
-        }
-      ]
-    },
-    {
-      "id": "cb79",
-      "name": "muhsin",
+      "id": "0fa4",
+      "name": "muhammed muhsin ck",
       "email": "muhsinmuhsinmuhsi786@gmail.com",
       "password": "12345",
       "cpassword": "12345",
+      "admin": true,
       "Cart": [
         {
-          "id": "4",
-          "name": "Baby Crib",
-          "description": "Convertible baby crib with adjustable mattress height.",
-          "category": "Feeding",
-          "price": 15000,
+          "id": "14",
+          "name": "Baby Teething Toys",
+          "description": "Set of 3 silicone teething toys in various shapes.",
+          "category": "Toys",
+          "price": 399,
           "stock_quantity": 1,
-          "brand": "Delta Children",
-          "details": "White,  material: Wood ",
-          "images": "https://media.hunyhuny.com/10947-home_default/Best-Baby-Cot-Bed-Online.jpg"
+          "brand": "Nuby",
+          "details": "9 oz, BPA-free plastic",
+          "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15956069a.webp"
         },
         {
-          "id": "5",
-          "name": "Baby Swaddle Blanket",
-          "description": "Soft and breathable swaddle blanket for newborns.",
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        {
+          "id": "13",
+          "name": "Baby Onesies",
+          "description": "Pack of 5 cotton onesies for newborns.",
           "category": "Clothing",
           "price": 499,
           "stock_quantity": 1,
-          "brand": "Aden + Anais",
-          "details": "color: Blue, material: Cotton, size: 47 x 47 inches",
-          "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15923187a.webp"
-        },
-        {
-          "id": "6",
-          "name": "Baby High Chair",
-          "description": "Adjustable high chair with safety harness and removable tray.",
-          "category": "Feeding",
-          "price": 999,
-          "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
-          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+          "brand": "Gerber",
+          "details": "size: Newborn   material: Cotton    color: White",
+          "images": "https://cdn.pixelspray.io/v2/black-bread-289bfa/XUefL6/wrkr/t.resize(h:490,w:490)/data/mothercare/24dec2021/ZA083-2.jpg"
         }
       ],
       "orders": {
@@ -280,20 +235,42 @@
         "landmark": "",
         "area": "kinfra",
         "city": "calicaut",
-        "state": "",
-        "payment": "upi"
+        "state": "Thamil Nadu",
+        "payment": ""
       },
       "orderedProducts": [
         {
-          "id": "4",
-          "name": "Baby Crib",
-          "description": "Convertible baby crib with adjustable mattress height.",
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
           "category": "Feeding",
-          "price": 15000,
+          "price": "3000",
           "stock_quantity": 1,
-          "brand": "Delta Children",
-          "details": "White,  material: Wood ",
-          "images": "https://media.hunyhuny.com/10947-home_default/Best-Baby-Cot-Bed-Online.jpg"
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        {
+          "id": "3",
+          "name": "Baby Bottle",
+          "description": "Anti-colic baby bottle with soft silicone nipple.",
+          "category": "Feeding",
+          "price": "200",
+          "stock_quantity": 1,
+          "brand": "Philips Avent",
+          "details": "9 oz, BPA-free plastic",
+          "images": "https://www.jiomart.com/images/product/original/rv8xmx1vic/luvlap-pink-stainless-steel-anti-colic-venting-system-feeding-bottle-240ml-product-images-orv8xmx1vic-p600480856-0-202304131016.jpg"
+        },
+        {
+          "id": "1",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent baby diapers for newborns.",
+          "category": "Feeding",
+          "price": "50",
+          "stock_quantity": 1,
+          "brand": "Huggies",
+          "details": "size: Newborn, pack_size: 100 count",
+          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
         },
         {
           "id": "5",
@@ -307,6 +284,192 @@
           "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15923187a.webp"
         },
         {
+          "id": "14",
+          "name": "Baby Teething Toys",
+          "description": "Set of 3 silicone teething toys in various shapes.",
+          "category": "Toys",
+          "price": 399,
+          "stock_quantity": 1,
+          "brand": "Nuby",
+          "details": "9 oz, BPA-free plastic",
+          "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15956069a.webp"
+        },
+        {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        {
+          "id": "13",
+          "name": "Baby Onesies",
+          "description": "Pack of 5 cotton onesies for newborns.",
+          "category": "Clothing",
+          "price": 499,
+          "stock_quantity": 1,
+          "brand": "Gerber",
+          "details": "size: Newborn   material: Cotton    color: White",
+          "images": "https://cdn.pixelspray.io/v2/black-bread-289bfa/XUefL6/wrkr/t.resize(h:490,w:490)/data/mothercare/24dec2021/ZA083-2.jpg"
+        },
+        {
+          "id": "14",
+          "name": "Baby Teething Toys",
+          "description": "Set of 3 silicone teething toys in various shapes.",
+          "category": "Toys",
+          "price": 399,
+          "stock_quantity": 1,
+          "brand": "Nuby",
+          "details": "9 oz, BPA-free plastic",
+          "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15956069a.webp"
+        },
+        {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        {
+          "id": "13",
+          "name": "Baby Onesies",
+          "description": "Pack of 5 cotton onesies for newborns.",
+          "category": "Clothing",
+          "price": 499,
+          "stock_quantity": 1,
+          "brand": "Gerber",
+          "details": "size: Newborn   material: Cotton    color: White",
+          "images": "https://cdn.pixelspray.io/v2/black-bread-289bfa/XUefL6/wrkr/t.resize(h:490,w:490)/data/mothercare/24dec2021/ZA083-2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "05eb",
+      "name": "jhone",
+      "email": "gggg@cef",
+      "password": "qqqqq",
+      "cpassword": "qqqqq",
+      "Cart": [
+        {
+          "id": "8",
+          "name": "Baby Bathtub",
+          "description": "Ergonomic baby bathtub with non-slip base and built-in thermometer.",
+          "category": "Toys",
+          "price": 2000,
+          "stock_quantity": 1,
+          "brand": "The First Years",
+          "details": "color : Blue,material : Plastic age_range : 0-12 months",
+          "images": "https://rforrabbit.com/cdn/shop/files/BubbleDoubleAquaBathtubBlue_1_785x.jpg?v=1704183758"
+        },
+        {
+          "id": "9",
+          "name": "Baby Carrier",
+          "description": "Comfortable and ergonomic baby carrier with multiple carrying positions.",
+          "category": "Feeding",
+          "price": 1500,
+          "stock_quantity": 1,
+          "brand": "Ergobaby",
+          "details": "color: Black, material: Cotton,weight_limit: 45 lbs",
+          "images": "https://polkatots.in/cdn/shop/files/16_b6e400c6-bdc1-4d2f-abf5-0cf2f1d701f8.png?v=1719919245&width=360"
+        }
+      ],
+      "orders": {
+        "name": "jhone",
+        "namber": "9990897878",
+        "country": "India",
+        "pinCode": "345678",
+        "address": "kakkanjeri malappuram chelari po",
+        "landmark": "",
+        "area": "kinfra",
+        "city": "calicaut",
+        "state": "",
+        "payment": "upi"
+      },
+      "orderedProducts": [
+        {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 1,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        {
+          "id": "1",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent baby diapers for newborns.",
+          "category": "Feeding",
+          "price": "50",
+          "stock_quantity": 1,
+          "brand": "Huggies",
+          "details": "size: Newborn, pack_size: 100 count",
+          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
+        },
+        {
+          "id": "3",
+          "name": "Baby Bottle",
+          "description": "Anti-colic baby bottle with soft silicone nipple.",
+          "category": "Feeding",
+          "price": "200",
+          "stock_quantity": 1,
+          "brand": "Philips Avent",
+          "details": "9 oz, BPA-free plastic",
+          "images": "https://www.jiomart.com/images/product/original/rv8xmx1vic/luvlap-pink-stainless-steel-anti-colic-venting-system-feeding-bottle-240ml-product-images-orv8xmx1vic-p600480856-0-202304131016.jpg"
+        },
+        {
+          "id": "7",
+          "name": "Baby Monitor",
+          "description": "Wireless baby monitor with night vision and two-way audio.",
+          "category": "Toys",
+          "price": 1500,
+          "stock_quantity": 1,
+          "brand": "VTech",
+          "details": "range: 1000 feet, battery_life: 10 hours",
+          "images": "https://img.kentfaith.de/cache/catalog/products/de/GW50.0032US/GW50.0032US-1-518x518.jpg"
+        },
+        {
+          "id": "8",
+          "name": "Baby Bathtub",
+          "description": "Ergonomic baby bathtub with non-slip base and built-in thermometer.",
+          "category": "Toys",
+          "price": 2000,
+          "stock_quantity": 1,
+          "brand": "The First Years",
+          "details": "color : Blue,material : Plastic age_range : 0-12 months",
+          "images": "https://rforrabbit.com/cdn/shop/files/BubbleDoubleAquaBathtubBlue_1_785x.jpg?v=1704183758"
+        },
+        {
+          "id": "9",
+          "name": "Baby Carrier",
+          "description": "Comfortable and ergonomic baby carrier with multiple carrying positions.",
+          "category": "Feeding",
+          "price": 1500,
+          "stock_quantity": 1,
+          "brand": "Ergobaby",
+          "details": "color: Black, material: Cotton,weight_limit: 45 lbs",
+          "images": "https://polkatots.in/cdn/shop/files/16_b6e400c6-bdc1-4d2f-abf5-0cf2f1d701f8.png?v=1719919245&width=360"
+        }
+      ]
+    },
+    {
+      "id": "fc79",
+      "name": "shuhaib",
+      "email": "shuhaib@gmail.com",
+      "password": "12345",
+      "cpassword": "12345",
+      "Cart": [
+        {
           "id": "6",
           "name": "Baby High Chair",
           "description": "Adjustable high chair with safety harness and removable tray.",
@@ -316,8 +479,321 @@
           "brand": "Fisher-Price",
           "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
           "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+        },
+        {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        }
+      ],
+      "orders": {
+        "name": "muhammed muhsin ck",
+        "namber": "07025328136",
+        "country": "England",
+        "pinCode": "555555",
+        "address": "kakkanjeri malappuram chelari po",
+        "landmark": "",
+        "area": "kinfra",
+        "city": "calicaut",
+        "state": "Thamil Nadu",
+        "payment": ""
+      },
+      "orderedProducts": [
+        {
+          "id": "6",
+          "name": "Baby High Chair",
+          "description": "Adjustable high chair with safety harness and removable tray.",
+          "category": "Feeding",
+          "price": 999,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
+          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+        },
+        {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
         }
       ]
+    },
+    {
+      "id": "ea75",
+      "name": "muhsin",
+      "email": "hhhh@hhh",
+      "password": "12345",
+      "cpassword": "12345",
+      "Cart": [
+        {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 2,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        {
+          "id": "4",
+          "name": "Baby Crib",
+          "description": "Convertible baby crib with adjustable mattress height.",
+          "category": "Feeding",
+          "price": 15000,
+          "stock_quantity": 1,
+          "brand": "Delta Children",
+          "details": "White,  material: Wood ",
+          "images": "https://media.hunyhuny.com/10947-home_default/Best-Baby-Cot-Bed-Online.jpg"
+        }
+      ],
+      "orders": {
+        "name": "musin",
+        "namber": "08137945631",
+        "country": "United state (us)",
+        "pinCode": "44444",
+        "address": "kakkanjeri malappuram chelari po",
+        "landmark": "",
+        "area": "kinfra",
+        "city": "calicaut",
+        "state": "",
+        "payment": ""
+      },
+      "orderedProducts": [
+        {
+          "id": "1",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent baby diapers for newborns.",
+          "category": "Feeding",
+          "price": "50",
+          "stock_quantity": 1,
+          "brand": "Huggies",
+          "details": "size: Newborn, pack_size: 100 count",
+          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
+        },
+        {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 1,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 2,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        {
+          "id": "4",
+          "name": "Baby Crib",
+          "description": "Convertible baby crib with adjustable mattress height.",
+          "category": "Feeding",
+          "price": 15000,
+          "stock_quantity": 1,
+          "brand": "Delta Children",
+          "details": "White,  material: Wood ",
+          "images": "https://media.hunyhuny.com/10947-home_default/Best-Baby-Cot-Bed-Online.jpg"
+        }
+      ]
+    }
+  ],
+  "selledProducts": [
+    {
+      "0": {
+        "id": "6",
+        "name": "Baby High Chair",
+        "description": "Adjustable high chair with safety harness and removable tray.",
+        "category": "Feeding",
+        "price": 999,
+        "stock_quantity": 1,
+        "brand": "Fisher-Price",
+        "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
+        "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+      },
+      "1": {
+        "id": "10",
+        "name": "Baby Play Mat",
+        "description": "Colorful and interactive play mat with toys and activities.",
+        "category": "Clothing",
+        "price": 1799,
+        "stock_quantity": 1,
+        "brand": "Fisher-Price",
+        "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+        "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+      },
+      "id": "8a75"
+    },
+    {
+      "0": {
+        "0": {
+          "id": "6",
+          "name": "Baby High Chair",
+          "description": "Adjustable high chair with safety harness and removable tray.",
+          "category": "Feeding",
+          "price": 999,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
+          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+        },
+        "1": {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        "id": "8a75"
+      },
+      "1": {
+        "id": "1",
+        "name": "Baby Diapers",
+        "description": "Soft and absorbent baby diapers for newborns.",
+        "category": "Feeding",
+        "price": "50",
+        "stock_quantity": 1,
+        "brand": "Huggies",
+        "details": "size: Newborn, pack_size: 100 count",
+        "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
+      },
+      "2": {
+        "id": "2",
+        "name": "Baby Stroller",
+        "description": "Lightweight and compact stroller with easy folding mechanism.",
+        "category": "Feeding",
+        "price": "3000",
+        "stock_quantity": 1,
+        "brand": "Graco",
+        "details": "Gray , weight_limit :50 lbs",
+        "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+      },
+      "id": "a9e3"
+    },
+    {
+      "0": {
+        "0": {
+          "id": "6",
+          "name": "Baby High Chair",
+          "description": "Adjustable high chair with safety harness and removable tray.",
+          "category": "Feeding",
+          "price": 999,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
+          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+        },
+        "1": {
+          "id": "10",
+          "name": "Baby Play Mat",
+          "description": "Colorful and interactive play mat with toys and activities.",
+          "category": "Clothing",
+          "price": 1799,
+          "stock_quantity": 1,
+          "brand": "Fisher-Price",
+          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        "id": "8a75"
+      },
+      "1": {
+        "0": {
+          "0": {
+            "id": "6",
+            "name": "Baby High Chair",
+            "description": "Adjustable high chair with safety harness and removable tray.",
+            "category": "Feeding",
+            "price": 999,
+            "stock_quantity": 1,
+            "brand": "Fisher-Price",
+            "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
+            "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
+          },
+          "1": {
+            "id": "10",
+            "name": "Baby Play Mat",
+            "description": "Colorful and interactive play mat with toys and activities.",
+            "category": "Clothing",
+            "price": 1799,
+            "stock_quantity": 1,
+            "brand": "Fisher-Price",
+            "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
+            "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+          },
+          "id": "8a75"
+        },
+        "1": {
+          "id": "1",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent baby diapers for newborns.",
+          "category": "Feeding",
+          "price": "50",
+          "stock_quantity": 1,
+          "brand": "Huggies",
+          "details": "size: Newborn, pack_size: 100 count",
+          "images": "https://rukminim2.flixcart.com/image/612/612/xif0q/diaper/b/f/k/-original-imagunc5euy4zxmf.jpeg?q=70"
+        },
+        "2": {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 1,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+        },
+        "id": "a9e3"
+      },
+      "2": {
+        "id": "2",
+        "name": "Baby Stroller",
+        "description": "Lightweight and compact stroller with easy folding mechanism.",
+        "category": "Feeding",
+        "price": "3000",
+        "stock_quantity": 2,
+        "brand": "Graco",
+        "details": "Gray , weight_limit :50 lbs",
+        "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
+      },
+      "3": {
+        "id": "4",
+        "name": "Baby Crib",
+        "description": "Convertible baby crib with adjustable mattress height.",
+        "category": "Feeding",
+        "price": 15000,
+        "stock_quantity": 1,
+        "brand": "Delta Children",
+        "details": "White,  material: Wood ",
+        "images": "https://media.hunyhuny.com/10947-home_default/Best-Baby-Cot-Bed-Online.jpg"
+      },
+      "id": "525a"
     }
   ]
 }

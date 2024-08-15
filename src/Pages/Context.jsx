@@ -1,6 +1,5 @@
 import React, { createContext,useEffect,useReducer,useState} from 'react'
 import Products from '../Components/Products'
-import Reducer from './Reducer'
 import axios from 'axios'
 import { notify } from '../Components/toastUtils'
 
@@ -13,26 +12,33 @@ export const createCtx=createContext()
     const[Cart,setCart]=useState([])
     const [user,setuser]=useState([])
 const userId =   localStorage.getItem("id")
+const [openParent, setOpenParent] = useState(false);
 
     
 useEffect(()=>{
+  const getprodut= async ()=>{
+    try{
       if(userId){
       axios.get(`http://localhost:3000/users/${userId}`)
         .then((response)=>setCart(response.data.Cart ||[])) 
         .catch((errer)=>console.log(errer))
-       
-      }else{
-        notify("please login","warn")
-      }
-    },[userId,Cart]);
+        }
+
+    }catch(err){
+      console.log(err,'error to fetch data');
+    }
+  }
+  getprodut()
+      
+    },[userId]);
+
 
     const addToCart= async(cartProduct)=>{
- 
+     if(!userId){
+      notify("Please Login",'warn')
+      return;
+     }
    try{
-   
-
-    // const res =await axios.get(`http://localhost:3000/users/${userss}`)
-    // const cart = res.data.Cart
     
 
 
@@ -45,8 +51,11 @@ useEffect(()=>{
       
 
       await axios.patch(`http://localhost:3000/users/${userId}`,{Cart:updatedcart})
+      notify("product added to cart ","success")
+    }else{
+      notify("product alredy exist",'warn')
     }
-
+    
    
    }catch(err){
     console.log('error add to cart',err);
@@ -54,13 +63,29 @@ useEffect(()=>{
      
    
     }
+  
 
   return (
     <div>
-  <createCtx.Provider value={{productslist,setproductlist,filtereditem,setfiltereditem,
-    setCart,Cart,addToCart,user,setuser,searchTerm,setserachTerm}}>
+  <createCtx.Provider
+      value={{
+        productslist,
+        setproductlist,
+        filtereditem,
+        setfiltereditem,
+        setCart,
+        Cart,
+        addToCart,
+        user,
+        setuser,
+        searchTerm,
+        setserachTerm,
+        openParent,
+        setOpenParent,
+      }}
+    >
       {children}
-  </createCtx.Provider>
+    </createCtx.Provider>
 
     </div>
   )

@@ -11,12 +11,15 @@ import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
 import { IoCloseOutline } from "react-icons/io5";
 import { RiUserFill } from "react-icons/ri";
-
+import { Typography } from '@material-tailwind/react';
+import { FaRegUserCircle } from "react-icons/fa";
+import { notify } from '../toastUtils';
 
 
 const Navbar = () => {
   const [loggine,setIsloggin] =useState(false)
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const[account,setaccount]=useState([])
 
   const{Cart,setserachTerm}=useContext(createCtx)
     const [clicked,setclicked]=useState(false)
@@ -37,6 +40,7 @@ const Navbar = () => {
             if(user){
             const res = await axios.get(`http://localhost:3000/users/${user}`)
             const data = res.data.Cart
+            setaccount(res.data)
             setCartIteam(Object.values(data))
             }
            }catch(err){
@@ -94,8 +98,13 @@ const Navbar = () => {
             <button onClick={closeDropdown} className="block text-right px-4 py-2 text-sm text-gray-700">
             <IoCloseOutline />
             </button>
-            {loggine?<div> <button onClick={handleSugnout} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+            {loggine?<div>
+              <FaRegUserCircle  className='ml-3 mt-2'/>
+              <Typography className='text-center bg-gray-50'>Hello,{account.name}</Typography>
+               <button onClick={handleSugnout} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
             <Link to={'/Orders'} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</Link>
+
+            {account.admin===true?<Link to={'/admin/dashbord'} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin panel</Link>:null}
             </div>:
             <div>
             <Link to={'/Login'} className="block text-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Login</Link>
