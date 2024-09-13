@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Button } from '@material-tailwind/react';
 import { notify } from '../toastUtils';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 
@@ -31,22 +32,64 @@ async function getusers(){
    
    }
 
-  const removeHandle=async(id,name)=>{
-   const userId=localStorage.getItem("id")
-    try{
-      if(userId!==id){
-        await axios.delete(`http://localhost:3000/users/${id}`)
-        setallusers( allusers.filter ((itmes)=> itmes.id !== id))
-        notify(`${name} removed success fully`,"success")
-      }else{
-        notify("this is you ","warn")
-      }
+  // const removeHandle=async(id,name)=>{
+  //  const userId=localStorage.getItem("id")
+  //   try{
+  //     if(userId!==id){
+  //       await axios.delete(`http://localhost:3000/users/${id}`)
+  //       setallusers( allusers.filter ((itmes)=> itmes.id !== id))
+  //       notify(`${name} removed success fully`,"success")
+  //     }else{
+  //       notify("this is you ","warn")
+  //     }
     
-    }catch(err){
-      console.log(err,"error  remove user");
+  //   }catch(err){
+  //     console.log(err,"error  remove user");
       
-    }
-  }
+  //   }
+
+
+    //----
+
+
+
+    const handleDelete = async (id, name) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => { // Make the inner function async
+        if (result.isConfirmed) {
+          // Proceed with deletion
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          
+          const userId = localStorage.getItem("id");
+          
+          try {
+            if (userId !== id) {
+              await axios.delete(`http://localhost:3000/users/${id}`);
+              setallusers(allusers.filter((item) => item.id !== id));
+              notify(`${name} removed successfully`, "success");
+            } else {
+              notify("This is you", "warn");
+            }
+          } catch (err) {
+            console.log(err, "error removing user");
+          }
+        }
+      });
+    };
+    
+    
+
+
+
+    //----
+  // }
 
   const Tablehead=["ID","User","Email","Password","","",""]
   return (
@@ -80,10 +123,7 @@ async function getusers(){
                           {items.password}
                         </TableCell>
                         <TableCell>
-                        <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> removeHandle(items.id,items.name)} >remove</Button>
-                        </TableCell>
-                        <TableCell>
-                       <Button className='bg-blue-500 hover:bg-blue-700'>make admin</Button>
+                        <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleDelete(items.id,items.name)} >remove</Button>
                         </TableCell>
                         <TableCell>
                        <Link to={`/Userdetails/${items.id}`} ><Button className='bg-blue-500 hover:bg-blue-700'>Details</Button></Link>

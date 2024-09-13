@@ -167,7 +167,7 @@ const Cart = () => {
 
             </div>
           ))}
-          {cartiteams.length>1? 
+          {cartiteams.length>0? 
           <div className=' flex justify-center text-center' >
             <Card >
               <CardBody>

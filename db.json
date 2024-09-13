@@ -5,7 +5,7 @@
       "name": "Baby Diapers",
       "description": "Soft and absorbent baby diapers for newborns.",
       "category": "Feeding",
-      "price": "500",
+      "price": "50",
       "stock_quantity": 1,
       "brand": "Huggies",
       "details": "size: Newborn, pack_size: 100 count",
@@ -155,17 +155,6 @@
       "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15956069a.webp"
     },
     {
-      "id": "15",
-      "name": "Baby Changing Pad",
-      "description": "Waterproof changing pad with safety straps.",
-      "category": "Feeding",
-      "price": 299,
-      "stock_quantity": 1,
-      "brand": "Summer Infant",
-      "details": "color: White,   material: Vinyl,   dimensions: 32 x 16 inches",
-      "images": "https://m.media-amazon.com/images/I/41bYDU-FiXL._SX300_SY300_QL70_FMwebp_.jpg"
-    },
-    {
       "id": "16 ",
       "name": "Rainy Day Print",
       "description": "Babyhug Full Sleeves Below Knee Length Transparent Raincoat",
@@ -193,37 +182,48 @@
       "admin": true,
       "Cart": [
         {
-          "id": "14",
-          "name": "Baby Teething Toys",
-          "description": "Set of 3 silicone teething toys in various shapes.",
-          "category": "Toys",
-          "price": 399,
+          "id": "3",
+          "name": "Baby Bottle",
+          "description": "Anti-colic baby bottle with soft silicone nipple.",
+          "category": "Feeding",
+          "price": "200",
           "stock_quantity": 1,
-          "brand": "Nuby",
+          "brand": "Philips Avent",
           "details": "9 oz, BPA-free plastic",
-          "images": "https://cdn.fcglcdn.com/brainbees/images/products/438x531/15956069a.webp"
+          "images": "https://www.jiomart.com/images/product/original/rv8xmx1vic/luvlap-pink-stainless-steel-anti-colic-venting-system-feeding-bottle-240ml-product-images-orv8xmx1vic-p600480856-0-202304131016.jpg"
         },
         {
-          "id": "10",
-          "name": "Baby Play Mat",
-          "description": "Colorful and interactive play mat with toys and activities.",
-          "category": "Clothing",
-          "price": 1799,
+          "id": "7",
+          "name": "Baby Monitor",
+          "description": "Wireless baby monitor with night vision and two-way audio.",
+          "category": "Toys",
+          "price": 1500,
           "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
-          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
+          "brand": "VTech",
+          "details": "range: 1000 feet, battery_life: 10 hours",
+          "images": "https://img.kentfaith.de/cache/catalog/products/de/GW50.0032US/GW50.0032US-1-518x518.jpg"
         },
         {
-          "id": "13",
-          "name": "Baby Onesies",
-          "description": "Pack of 5 cotton onesies for newborns.",
-          "category": "Clothing",
-          "price": 499,
+          "id": "12",
+          "name": "Baby Walker",
+          "description": "Interactive baby walker with toys and music.",
+          "category": "Toys",
+          "price": 1399,
           "stock_quantity": 1,
-          "brand": "Gerber",
-          "details": "size: Newborn   material: Cotton    color: White",
-          "images": "https://cdn.pixelspray.io/v2/black-bread-289bfa/XUefL6/wrkr/t.resize(h:490,w:490)/data/mothercare/24dec2021/ZA083-2.jpg"
+          "brand": "Baby Einstein",
+          "details": "color: Red,  material: Plastic, weight_limit: 30 lbs",
+          "images": "https://m.media-amazon.com/images/I/51hNjIn9JnL._SX300_SY300_QL70_FMwebp_.jpg"
+        },
+        {
+          "id": "2",
+          "name": "Baby Stroller",
+          "description": "Lightweight and compact stroller with easy folding mechanism.",
+          "category": "Feeding",
+          "price": "3000",
+          "stock_quantity": 1,
+          "brand": "Graco",
+          "details": "Gray , weight_limit :50 lbs",
+          "images": "https://media.hunyhuny.com/9460-large_default/stroller-pram-reversible-seat-adjustable-handle-bar-khakhee.jpg"
         }
       ],
       "orders": {
@@ -459,73 +459,6 @@
           "brand": "Ergobaby",
           "details": "color: Black, material: Cotton,weight_limit: 45 lbs",
           "images": "https://polkatots.in/cdn/shop/files/16_b6e400c6-bdc1-4d2f-abf5-0cf2f1d701f8.png?v=1719919245&width=360"
-        }
-      ]
-    },
-    {
-      "id": "fc79",
-      "name": "shuhaib",
-      "email": "shuhaib@gmail.com",
-      "password": "12345",
-      "cpassword": "12345",
-      "Cart": [
-        {
-          "id": "6",
-          "name": "Baby High Chair",
-          "description": "Adjustable high chair with safety harness and removable tray.",
-          "category": "Feeding",
-          "price": 999,
-          "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
-          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
-        },
-        {
-          "id": "10",
-          "name": "Baby Play Mat",
-          "description": "Colorful and interactive play mat with toys and activities.",
-          "category": "Clothing",
-          "price": 1799,
-          "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
-          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
-        }
-      ],
-      "orders": {
-        "name": "muhammed muhsin ck",
-        "namber": "07025328136",
-        "country": "England",
-        "pinCode": "555555",
-        "address": "kakkanjeri malappuram chelari po",
-        "landmark": "",
-        "area": "kinfra",
-        "city": "calicaut",
-        "state": "Thamil Nadu",
-        "payment": ""
-      },
-      "orderedProducts": [
-        {
-          "id": "6",
-          "name": "Baby High Chair",
-          "description": "Adjustable high chair with safety harness and removable tray.",
-          "category": "Feeding",
-          "price": 999,
-          "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Green, material: Plastic,weight_limit: 40 lbs",
-          "images": "https://rforrabbit.com/cdn/shop/files/01_b449841a-b63a-4a62-8f5a-eed980166507.png?v=1722321984"
-        },
-        {
-          "id": "10",
-          "name": "Baby Play Mat",
-          "description": "Colorful and interactive play mat with toys and activities.",
-          "category": "Clothing",
-          "price": 1799,
-          "stock_quantity": 1,
-          "brand": "Fisher-Price",
-          "details": "color: Multicolor,   material: Polyester, dimensions: 36 x 36 inches",
-          "images": "https://m.media-amazon.com/images/I/51jXLOvyp9L._SX300_SY300_QL70_FMwebp_.jpg"
         }
       ]
     },

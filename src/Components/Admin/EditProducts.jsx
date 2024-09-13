@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardHeader, CardBody, CardFooter, Typography, Button } from "@material-tailwind/react";
-import NestedModal from './EditModal'; // Import the NestedModal component
+import NestedModal from './EditModal'; 
+import Swal from 'sweetalert2';
 
 const EditProducts = () => {
   const [openParent, setOpenParent] = useState(false); // State for modal visibility
@@ -26,14 +27,40 @@ const EditProducts = () => {
     setCategory(updatedItems);
   };
 
-  const deleteProduct = async (productId) => {
-    try {
-      await axios.delete(`http://localhost:3000/products/${productId}`);
-      setCategory(allProducts.filter((items) => items.id !== productId));
-    } catch (err) {
-      console.log(err, 'failed to delete products');
-    }
-  };
+  // const deleteProduct = async (productId) => {
+  //   try {
+  //     await axios.delete(`http://localhost:3000/products/${productId}`);
+  //     setCategory(allProducts.filter((items) => items.id !== productId));
+  //   } catch (err) {
+  //     console.log(err, 'failed to delete products');
+  //   }
+    //-----
+    const handleDelete = async(productId) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async(result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Deleted!','Your file has been deleted.','success');
+
+          try {
+            await axios.delete(`http://localhost:3000/products/${productId}`);
+            setCategory(allProducts.filter((items) => items.id !== productId));
+          } catch (err) {
+            console.log(err, 'failed to delete products');
+          }
+        }
+      });
+    };
+    
+ 
+    //----
+  // };
 
   const edithandle=(id)=>{
     setOpenParent(true);
@@ -77,7 +104,7 @@ const EditProducts = () => {
                   </Typography>
                 </CardBody>
                 <CardFooter className="pt-0 flex justify-between">
-                  <Button className="m-3 bg-blue-500 hover:bg-blue-800" onClick={() => deleteProduct(items.id)}>Delete</Button>
+                  <Button className="m-3 bg-blue-500 hover:bg-blue-800" onClick={() => handleDelete(items.id)}>Delete</Button>
                   <Button className="m-3 bg-blue-500 hover:bg-blue-800" onClick={() => edithandle(items.id)}>Edit</Button>
                 </CardFooter>
               </Card>
