@@ -11,26 +11,46 @@ import axios from 'axios';
 import { createCtx } from '../Pages/Context';
 import Navbar from './Header/Navbar';
 import Footer from './Footr';
+import { FiHeart } from "react-icons/fi";
+import ProductModal from './Productmodal';
+import { FaHeart } from "react-icons/fa";
 
 const Products = () => {
-  const { productslist, setproductlist, setCart, addToCart, setserachTerm, searchTerm } = useContext(createCtx);
+  //feching from context
+  const { productslist, setproductlist, setCart, addToCart, setserachTerm, searchTerm ,addWishlist,
+    wishlistdeleteHandle,setiswishlist,iswishlist} = useContext(createCtx);
   const [catogery, setcatogery] = useState(productslist);
+  const [ismodalopen,setismodalopen]=useState(false)
+  const [product,setproduct]=useState(null)
 
+  //product filter
   const filterItems = (cartitem) => {
     const updateItems = productslist.filter((items) => items.category === cartitem);
     setcatogery(updateItems);
   };
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/products")
-      .then((res) => {
-        setproductlist(res.data);
-        setcatogery(res.data);
-      })
-      .catch((err) => {
-        console.error('Error fetching products:', err);
-      });
-  }, [setproductlist]);
+  const tocken = localStorage.getItem('tocken');
+
+  const closemodel=()=>{
+    setismodalopen(false);
+  }
+
+ useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/users/products", {
+          headers: {
+            Authorization: ` ${tocken}`
+          }
+        });
+        setproductlist(response?.data?.data);
+        
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    fetchProducts();
+  }, [setproductlist, tocken]);
 
   useEffect(() => {
     if (searchTerm) {
@@ -43,30 +63,56 @@ const Products = () => {
     }
   }, [searchTerm, productslist]);
 
+  const viewbyid=async (product)=>{
+    console.log(product._id,'this is id');
+    let id = product._id;
+    
+    try {
+      const product=await axios.get(`http://localhost:5000/api/users/products/${id}`,{
+      headers:{
+        Authorization:`${tocken}`
+      }
+    })
+    setproduct(product.data.product)
+    setismodalopen(true)
+
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  }
+
+
   return (
-    <div className="">
+
+    //header
+    <div className="bg-yellow-100">
       <Navbar />
-      <div className="bg-yellow-500 w-full h-auto m-3 flex justify-center space-x-4">
+      <div className="bg-yellow-200 w-full h-auto m-3 flex justify-center space-x-4">
         <button className="p-3 hover:bg-red-500" onClick={() => setcatogery(productslist)}>All</button>
         <button className="p-3 hover:bg-red-500" onClick={() => filterItems("Toys")}>Toys</button>
-        <button className="p-3 hover:bg-red-500" onClick={() => filterItems("Clothing")}>Clothing</button>
+        <button className="p-3 hover:bg-red-500" onClick={() => filterItems("clothing")}>Clothing</button>
         <button className="p-3 hover:bg-red-500" onClick={() => filterItems("Feeding")}>Feeding</button>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-5">
+ 
+     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-5" >
         {catogery.map((items, index) => (
-          <Card key={index} className="hover:scale-105 duration-200">
-            <CardHeader shadow={true} floated={false} className="h-60">
+          <Card key={index} className="hover:scale-105 duration-200" >
+            <CardHeader shadow={true} floated={false} className="h-60" >
+              <button className='p-1 inline-block' onClick={()=>iswishlist?addWishlist(items._id):wishlistdeleteHandle(items._id)}>{iswishlist?<FaHeart />:<FiHeart />}
+              </button>
               <img
-                src={items.images}
+                src={items.image}
                 alt="card-image"
                 className="h-full w-full object-cover"
+                onClick={()=>viewbyid(items)}
               />
             </CardHeader>
             <CardBody>
               <div className="mb-2 flex items-center justify-between">
                 <Typography color="blue-gray" className="font-medium">
-                  {items.name}
+                  {items.title}
                 </Typography>
                 <Typography color="blue-gray" className="font-medium">
                   {items.price}
@@ -94,6 +140,7 @@ const Products = () => {
         ))}
       </div>
       <Footer />
+      <ProductModal isOpen={ismodalopen} onClose={closemodel} product={product}/>
     </div>
   );
 }

@@ -9,28 +9,13 @@ export const createCtx=createContext()
     const[productslist,setproductlist]=useState([])
     const [filtereditem,setfiltereditem]=useState([])
    const[searchTerm,setserachTerm]=useState("")
-    const[Cart,setCart]=useState([])
+    const[Cart,setCart]=useState(false)
     const [user,setuser]=useState([])
-const userId =   localStorage.getItem("id")
-const [openParent, setOpenParent] = useState(false);
-
+    const [iswishlist,setiswishlist]=useState(false)
     
-useEffect(()=>{
-  const getprodut= async ()=>{
-    try{
-      if(userId){
-      axios.get(`http://localhost:3000/users/${userId}`)
-        .then((response)=>setCart(response.data.Cart ||[])) 
-        .catch((errer)=>console.log(errer))
-        }
-
-    }catch(err){
-      console.log(err,'error to fetch data');
-    }
-  }
-  getprodut()
-      
-    },[userId]);
+const userfull =   localStorage.getItem("user")
+const userId=JSON.parse(userfull)
+const [openParent, setOpenParent] = useState(false);
 
 
     const addToCart= async(cartProduct)=>{
@@ -39,31 +24,60 @@ useEffect(()=>{
       return;
      }
    try{
+      const tocken=localStorage.getItem('tocken')
     
-
-
-    const productExists=  Cart.some(item=> item.id ===cartProduct.id );
-
-    if(!productExists){
-      const updatedcart=[...Cart,cartProduct];
-      setCart(updatedcart)
-      console.log(Cart);
-      
-
-      await axios.patch(`http://localhost:3000/users/${userId}`,{Cart:updatedcart})
-      notify("product added to cart ","success")
-    }else{
-      notify("product alredy exist",'warn')
-    }
-    
-   
+       const response=await axios.post(`http://localhost:5000/api/users/${userId._id}/cart/${cartProduct._id}`,{}, {
+        headers: {
+          Authorization: ` ${tocken}`
+        }
+      });
+      notify(`${response.data.messege}`,"success")
+      setCart(!Cart)
    }catch(err){
     console.log('error add to cart',err);
    }
-     
-   
     }
-  
+
+    const addWishlist= async (productId)=>{
+      if(!userId){
+        notify("please login",'warn')
+      }
+      const tocken=localStorage.getItem('tocken')
+      try {
+        const res=await axios.post(`http://localhost:5000/api/users/${userId._id}/wishlist/${productId}`,{},{
+          headers:{
+            Authorization:`${tocken}`
+          }
+        })
+        
+        notify(`${res.data.messege}`,'success')
+        setiswishlist(true)
+      } catch (error) {
+        console.log(error,'error to add to wishlist');
+      }
+    }
+
+
+    const wishlistdeleteHandle=async(itemsId)=>{
+      const userlocalStorage=localStorage.getItem('user');
+          const user=JSON.parse(userlocalStorage)
+          const tocken=localStorage.getItem('tocken')
+          try{
+             const res=await axios.delete(`http://localhost:5000/api/users/${user._id}/wishlist/${itemsId}/remove`,{
+          headers:{
+              Authorization:`${tocken}`
+          }
+      })
+       notify(`${res.data.messege}`,'success')
+       setiswishlist(false)  
+          }catch(error){
+              console.log(error,'error to delete');
+              
+          }
+     
+
+  }
+
 
   return (
     <div>
@@ -82,6 +96,10 @@ useEffect(()=>{
         setserachTerm,
         openParent,
         setOpenParent,
+        addWishlist,
+        wishlistdeleteHandle,
+        setiswishlist,
+        iswishlist
       }}
     >
       {children}

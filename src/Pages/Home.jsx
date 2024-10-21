@@ -16,7 +16,7 @@ const Home = () => {
   return (
 <div>
     {/* home head settion -------------------------*/}
-       <div   className= ' bg-yellow-400 '>
+       <div   className= ' bg-yellow-200 '>
       <div>
         <Navbar/>
       </div>

@@ -11,10 +11,23 @@ import EditProducts from '../Components/Admin/EditProducts';
 import AddProducts from '../Components/Admin/AddProducts';
 import UserDetails from '../Components/Admin/UserDetails';
 import Allorders from '../Components/Admin/Allorders';
+import { IoIosLogOut } from "react-icons/io";
+import { notify } from '../Components/toastUtils';
 
 const AdminHome = () => {
     const { id } = useParams();
     console.log(id, "usparams3");
+
+    const Logouthandle=async()=>{
+      try {
+        localStorage.clear()
+
+        notify('logout complite successfuly')
+
+      } catch (error) {
+        console.log('error to logout');
+      }
+    }
 
     return (
         <>
@@ -27,6 +40,9 @@ const AdminHome = () => {
                                 Home
                             </button>
                         </Link>
+
+                        <button className='bg-blue-500 hover:bg-blue-700 rounded px-4 py-2 ml-3' 
+                        onClick={Logouthandle} ><IoIosLogOut className='inline'/> Logout </button>
                     </div>
                 </div>
             </nav>
@@ -73,7 +89,7 @@ const AdminHome = () => {
                      id === 'editproducts' ? <EditProducts /> :
                      id === 'addproducts' ? <AddProducts /> :
                      id === 'trackorders' ? <Trackorder /> :
-                     id === 'Userdetails' ? <UserDetails /> : 
+                     id === 'Userdetails/:id' ? <UserDetails /> : 
                      id==='Allorders'? <Allorders/>:null}
                 </div>
             </div>

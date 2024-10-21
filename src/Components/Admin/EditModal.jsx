@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { number } from 'yup';
+import { notify } from '../toastUtils';
 
 const modalStyle = {
   position: 'fixed',
@@ -29,6 +30,7 @@ const overlayStyle = {
 
 function NestedModal({ openParent, setOpenParent,productId, updateProductList }) {
  const [allProducts,setproducts]=useState([])
+ const [image,setimage]=useState(null)
   
   
 //  useEffect(()=>{
@@ -37,29 +39,39 @@ function NestedModal({ openParent, setOpenParent,productId, updateProductList })
   
 
   
-  const {values,handleBlur,handleChange,handleSubmit, errors, setValues}=useFormik({
+  const {values,handleBlur,handleChange,handleSubmit, setValues}=useFormik({
     initialValues:{
-          id: "",
-          name: '',
+          title: '',
           description:'',
           category:'',
           price: number,
-          stock_quantity:number,
-          brand:'',
-          details:'', 
-          images:'',
     },
 
 
     onSubmit: async (values) => {
+      const tocken=localStorage.getItem('tocken')
+
+      const formData=new FormData();
+      formData.append('title',values.title);
+      formData.append('description',values.description);
+      formData.append('price',values.price);
+      formData.append('category',values.category)
+      if(image){
+        formData.append('image',image)
+      }
+
       console.log("Submitting values:", values);
       try {
-          const updated = { ...values };
-          await axios.put(`http://localhost:3000/products/${productId}`, updated);
+          await axios.put(`http://localhost:5000/api/admin/products/edit/${productId}`,formData,{
+            headers:{
+              Authorization:`${tocken}`,
+              "Content-Type": "multipart/form-data",
+            }
+          });
           console.log("Product updated successfully");
           updateProductList();
           setOpenParent(false)
-          getprodut()
+          notify('product updated successfully','success')
       } catch (err) {
           console.log(err, "error to update product");
       }
@@ -71,8 +83,13 @@ function NestedModal({ openParent, setOpenParent,productId, updateProductList })
 
 useEffect(() => {
   const getProduct = async () => {
+    const tocken=localStorage.getItem('tocken')
     try {
-      const res = await axios.get(`http://localhost:3000/products/${productId}`);
+      const res = await axios.get(`http://localhost:5000/api/admin/products/${productId}`,{
+        headers:{
+          Authorization:`${tocken}`
+        }
+      });
       setValues(res.data);
       setproducts(res.data)
     } catch (err) {
@@ -82,7 +99,10 @@ useEffect(() => {
   getProduct();
 }, [productId, setValues]);
 
+const handleImageChange=(e)=>{
+  setimage(e.target.files[0]);
 
+}
   
 
   return (
@@ -97,7 +117,7 @@ useEffect(() => {
          <form onSubmit={handleSubmit}>
          <div className="mb-4">
 
-         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+         {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
              Product Id
            </label>
            <input
@@ -108,7 +128,7 @@ useEffect(() => {
              onChange={handleChange}
              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
            />
-         
+          */}
            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
              Product Name
            </label>
@@ -116,7 +136,7 @@ useEffect(() => {
              id="name"
              type="text"
              name='name'
-             value={values.name}
+             value={values.title}
              onChange={handleChange}
              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
            />
@@ -135,7 +155,7 @@ useEffect(() => {
              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
            />
 
-         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+         {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
              quantity
            </label>
            <input
@@ -145,7 +165,7 @@ useEffect(() => {
              value={values.stock_quantity}
              onChange={handleChange}
              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-           />
+           /> */}
 
        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
              category
@@ -177,10 +197,9 @@ useEffect(() => {
            </label>
            <input
              id="price"
-             type="text"
-            name='images'
-            value={values.images}
-            onChange={handleChange}    
+             type="file"
+            name='image'
+            onChange={handleImageChange}    
              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
            />
          </div>

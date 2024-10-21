@@ -32,49 +32,46 @@ import {
   }     
 
 const Login = () => {
-  const[users,setusers]=useState([])
     let navigate=useNavigate()
-
 
     const {values,handleBlur,handleChange,handleSubmit, errors}=useFormik({
         initialValues:initiolvalue,
         validationSchema:signupValidation, 
-        onSubmit:async(values)=>{
+    onSubmit:async(values)=>{
+     try{
+      const response = await axios.post("http://localhost:5000/api/users/login",{
+        email:values.email,
+        password:values.password
+      });
+        
+      if(response.status===200){
+        const {tocken,user}=response.data;
 
-        const response = await axios.get("http://localhost:3000/users")
-        const user=response.data.find((user)=>user.email===values.email)
+        localStorage.setItem('tocken',tocken)
+        localStorage.setItem('user',JSON.stringify(user))
 
-        if(user&& user.admin===true){
-          localStorage.setItem("id",user.id)
-          navigate('/admin/dashbord')
-          notify("admin logined success fully","success")
-
-        }else if(user){
-          localStorage.setItem("id",user.id)
-          navigate('/')
-          notify("login complite success fully","success")
-
-        }else{
-          notify("invalid email or password");
-        }
-
-           
-         
-          
-
+        navigate('/');
+        notify('login complite successfully','success');
+      }
+     }catch(error){
+        notify("Invalid email or password", "error")
+        console.log(error,'this is errorelkjl');
+        
+     }
+     
         }
     })
 
   return (
     <div className='flex justify-center' >
     <form onSubmit={handleSubmit}>
-       <Card  className="w-96  ">
+       <Card  className="w-96  bg-yellow-500 ">
          <CardHeader
            variant="gradient"
-           color="yellow"
+           color="gray"
            className="mb-4 grid h-28 place-items-center"
          >
-           <Typography variant="h3" color="black">
+           <Typography variant="h3" color="white">
              Sign In
            </Typography>
          </CardHeader>
@@ -99,7 +96,7 @@ const Login = () => {
            </div>
          </CardBody>
          <CardFooter className="pt-0">
-           <Button variant="gradient" fullWidth color='yellow' type='submit'>
+           <Button variant="gradient" fullWidth color='gray' type='submit'>
              Submit
            </Button>
            <Typography variant="small" className="mt-6 flex justify-center">
@@ -110,10 +107,11 @@ const Login = () => {
                variant="small"
                color="blue-gray"
                className="ml-1 font-bold"
+               onClick={()=>navigate('/Regisrter')}
              >
-               Sign Up
+               Sign Up 
              </Typography>
-             <Button variant="gradient" className='m-3' type='submit' color='yellow' onClick={()=>navigate(-1)}>Back</Button>
+             <Button variant="gradient" className='m-3' type='submit' color='gray' onClick={()=>navigate(-1)}>Back</Button>
            </Typography>
          </CardFooter>
        </Card>

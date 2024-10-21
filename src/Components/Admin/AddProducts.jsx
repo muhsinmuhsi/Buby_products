@@ -48,7 +48,7 @@ const handleSubmit=async (e)=>{
             <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
             <form onSubmit={handleSubmit} >
                 <div className="mb-4">
-                {/* <label className="block text-gray-700">Product Id</label>
+                <label className="block text-gray-700">Product Id</label>
                     <input
                         type="text"
                         name="id"
@@ -56,7 +56,7 @@ const handleSubmit=async (e)=>{
                        onChange={handleChange}
                         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
-                    /> */}
+                    />
 
                     <label className="block text-gray-700">Product Name</label>
                     <input

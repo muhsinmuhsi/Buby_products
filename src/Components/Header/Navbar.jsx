@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import logo from "../../assets/logo.svg"
-import { Link } from 'react-router-dom'
+import { json, Link } from 'react-router-dom'
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
@@ -15,6 +15,7 @@ import { Typography } from '@material-tailwind/react';
 import { FaRegUserCircle } from "react-icons/fa";
 import { notify } from '../toastUtils';
 import Swal from 'sweetalert2';
+import { IoIosHeartEmpty } from "react-icons/io";
 
 
 
@@ -26,9 +27,10 @@ const Navbar = () => {
   const { Cart, setserachTerm } = useContext(createCtx)
   const [clicked, setclicked] = useState(false)
   const [cartiteams, setCartIteam] = useState([])
+const userlocalStorage = localStorage.getItem("user")
+    const user=JSON.parse(userlocalStorage)
 
   useEffect(() => {
-    const user = localStorage.getItem("id")
     if (user) {
       setIsloggin(true)
     }
@@ -37,20 +39,28 @@ const Navbar = () => {
 
   useEffect(() => {
     async function abc() {
+      const tocken=localStorage.getItem('tocken')
       try {
-        const user = localStorage.getItem("id")
         if (user) {
-          const res = await axios.get(`http://localhost:3000/users/${user}`)
-          const data = res.data.Cart
-          setaccount(res.data)
-          setCartIteam(Object.values(data))
+          const res = await axios.get(`http://localhost:5000/api/users/${user._id}/cart`,{
+            headers:{
+              Authorization:`${tocken}`
+            }
+          })
+
+          const data = res.data
+          setaccount(user)
+          setCartIteam(data)
+          console.log(Cart,'this is cat from abc function');
+        
+          
         }
       } catch (err) {
-        console.log("errrr");
+        console.log("errrr",err);
       }
     }
     abc()
-  }, [cartiteams])
+  }, [Cart])
 
   
 
@@ -70,7 +80,7 @@ const Navbar = () => {
             'Your file has been deleted.',
             'success'
           ),
-          localStorage.clear("id")
+          localStorage.clear()
           setIsloggin(false)
           notify("logout complite", "warn")
         }
@@ -112,7 +122,9 @@ const Navbar = () => {
         />
         <Link to="/shop"><button className='p-1 m-1 rounded-full bg-yellow-200 hover:bg-yellow-700'><IoSearch /></button></Link>
 
-        <Link to="/Cart"><a className='inline-block mx-3' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-1'>{cartiteams.length}</span><IoCartOutline /></a></Link>
+       <Link to="/wishlist"><button className='p-1 rounded-full hover:bg-yellow-700'><IoIosHeartEmpty /></button></Link> 
+
+        <Link to="/Cart"><a className='p-1 inline-block mx-3 hover:bg-yellow-100 rounded-full' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-1'>{cartiteams.length}</span><IoCartOutline /></a></Link>
 
         <button className='inline-block mx-3' onClick={toggleDropdown} >{isDropdownVisible ? <RiUserFill /> : <FaRegUser />}</button>
 
@@ -123,7 +135,7 @@ const Navbar = () => {
             </button>
             {loggine ? <div>
               <FaRegUserCircle className='ml-3 mt-2' />
-              <Typography className='text-center bg-gray-50'>Hello,{account.name}</Typography>
+              <Typography className='text-center bg-gray-50'>Hello,{account.username}</Typography>
               <button onClick={handleDelete} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
               <Link to={'/Orders'} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</Link>
 

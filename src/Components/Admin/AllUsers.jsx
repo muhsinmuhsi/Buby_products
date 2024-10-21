@@ -11,21 +11,33 @@ import { Button } from '@material-tailwind/react';
 import { notify } from '../toastUtils';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { FiUserX } from "react-icons/fi";
+import { FiUserCheck } from "react-icons/fi";
+
+
 
 
 
 const AllUsers = () => {
   const [allusers,setallusers]=useState([])
+  const [isblock,setisblock]=useState(false)
 
   useEffect(()=>{
    getusers();
-  },[])
+  },[isblock])
 
 
 async function getusers(){
+  const tocken=localStorage.getItem('tocken')
   try{
-    const response= await axios.get("http://localhost:3000/users")
+    const response= await axios.get("http://localhost:5000/api/admin/viewAllUsers",{
+      headers:{
+        Authorization:`${tocken}`
+      }
+    })
     setallusers(response.data)
+    console.log(response.data,'this is data from getusers');
+    
   }catch(err){
     console.log("error to fetch users",err);
   }
@@ -50,10 +62,38 @@ async function getusers(){
 
 
     //----
+ const handleUnblock=async (id)=>{
+  const tocken=localStorage.getItem('tocken')
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You won\'t be able to revert this!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, block it!'
+  }).then(async (result) => {
+    if(result.isConfirmed){
+      Swal.fire('unBlocked!', 'Your file has been unBlock.', 'success');
+      try {
+        const isunblock=await axios.put(`http://localhost:5000/api/admin/user/unblock/${id}`,{},{
+          headers:{
+            Authorization:`${tocken}`
+          }
+        })
+
+        notify('unBlocked','success')
+        setisblock(!isblock)
+      } catch (error) {
+        console.log('error to unblock user',error);
+      }  
+    }
+  })
+ }
 
 
-
-    const handleDelete = async (id, name) => {
+    const handleBlock = async (id, name) => {
+      const tocken=localStorage.getItem('tocken')
       Swal.fire({
         title: 'Are you sure?',
         text: 'You won\'t be able to revert this!',
@@ -61,24 +101,21 @@ async function getusers(){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, block it!'
       }).then(async (result) => { // Make the inner function async
         if (result.isConfirmed) {
           // Proceed with deletion
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-          
-          const userId = localStorage.getItem("id");
-          
+          Swal.fire('Blocked!', 'Your file has been Blocked.', 'success');  
           try {
-            if (userId !== id) {
-              await axios.delete(`http://localhost:3000/users/${id}`);
-              setallusers(allusers.filter((item) => item.id !== id));
-              notify(`${name} removed successfully`, "success");
-            } else {
-              notify("This is you", "warn");
-            }
+             const isblock= await axios.put(`http://localhost:5000/api/admin/user/block/${id}`,{},{
+              headers:{
+                Authorization:`${tocken}`
+              }
+             });
+              notify(`${name} blocked successfully`, "success");
+              setisblock(!isblock)
           } catch (err) {
-            console.log(err, "error removing user");
+            console.log(err, "error blocking user");
           }
         }
       });
@@ -91,7 +128,7 @@ async function getusers(){
     //----
   // }
 
-  const Tablehead=["ID","User","Email","Password","","",""]
+  const Tablehead=["ID","User","Email","image","","",""]
   return (
     <div>
 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -111,22 +148,26 @@ async function getusers(){
             {allusers.map((items)=>(
               <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell>
-                          {items.id}
+                          {items._id}
                         </TableCell>
                         <TableCell>
-                          {items.name}
+                          {items.username}
                         </TableCell>
                         <TableCell>
                           {items.email}
                         </TableCell>
                         <TableCell>
-                          {items.password}
+                          <img src={items.image} alt={items.username}  className='w-10 rounded-2xl'/>
                         </TableCell>
                         <TableCell>
-                        <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleDelete(items.id,items.name)} >remove</Button>
+                          {items.isDeleted?
+                          <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleUnblock(items._id)}><FiUserX /></Button>
+                          :
+                          <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleBlock(items._id,items.name)} ><FiUserCheck /></Button>
+                          }
                         </TableCell>
                         <TableCell>
-                       <Link to={`/Userdetails/${items.id}`} ><Button className='bg-blue-500 hover:bg-blue-700'>Details</Button></Link>
+                       <Link to={`/Userdetails/${items._id}`} ><Button className='bg-blue-500 hover:bg-blue-700'>Details</Button></Link>
                         </TableCell>
                   </TableRow>
             ))}

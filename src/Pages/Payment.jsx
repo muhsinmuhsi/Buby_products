@@ -97,7 +97,7 @@ const Payment = () => {
 
     return (
         <>
-          <div className='flex flex-row justify-between flex-wrap h-14 bg-yellow-500'>
+          <div className='flex flex-row justify-between flex-wrap h-14 bg-yellow-200'>
             <img src={logo} alt="Logo" />
             <Typography variant='h1' color='black' className=''>Checkout</Typography>
            <Link to={'/'}> <div className='mx-5 my-3'><MdHome className='size-8'/></div></Link>

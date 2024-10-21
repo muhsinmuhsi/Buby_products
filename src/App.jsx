@@ -20,6 +20,10 @@ import EditProducts from './Components/Admin/EditProducts'
 import UserDetails from './Components/Admin/UserDetails'
 import NestedModal from './Components/Admin/EditModal'
 import Allorders from './Components/Admin/Allorders'
+import Productmodal from './Components/Productmodal'
+import Wishlist from './Components/Wishlist'
+import AdminLogin from './Components/Admin/AdminLogin'
+
 
 
 
@@ -42,13 +46,17 @@ function App() {
   <Route path='/Cart' element={<Cart/>}/>
   <Route path='/Payment' element={<Payment/>}/>
   <Route path='/Orders' element={<Orders/>}/>
-  <Route path='/allusers' element={<AllUsers/>}/>
-  <Route path='/dashbord' element={<Dashbord/>}/>
+  {/* <Route path='/allusers' element={<AllUsers/>}/>
   <Route path='/addproducts' element={<AddProducts/>}/>
-  <Route path='/Editproducts' element={<EditProducts/>}/>
-  <Route path='/Userdetails/:id' element={<UserDetails/>}/>
-  <Route path='/EditModal' element={<NestedModal/>}/>
+  <Route path='/Editproducts' element={<EditProducts/>}/> */}
+  <Route path='/Userdetails/:id' element={<UserDetails/>}/> 
+  {/* <Route path='/EditModal' element={<NestedModal/>}/>
   <Route path='/Allorders' element={<Allorders/>}/>
+  <Route path='/productid' element={<Productmodal/>}/> */}
+  <Route path='/wishlist' element={<Wishlist/>}/>
+  <Route path='/adminlogin' element={<AdminLogin/>}/>
+
+
 
 
 </Routes>
