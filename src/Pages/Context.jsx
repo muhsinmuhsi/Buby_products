@@ -11,7 +11,7 @@ export const createCtx=createContext()
    const[searchTerm,setserachTerm]=useState("")
     const[Cart,setCart]=useState(false)
     const [user,setuser]=useState([])
-    const [iswishlist,setiswishlist]=useState(false)
+    const [iswishlist,setiswishlist]=useState([])
     
 const userfull =   localStorage.getItem("user")
 const userId=JSON.parse(userfull)
@@ -23,6 +23,7 @@ const [openParent, setOpenParent] = useState(false);
       notify("Please Login",'warn')
       return;
      }
+
    try{
       const tocken=localStorage.getItem('tocken')
     
@@ -38,11 +39,12 @@ const [openParent, setOpenParent] = useState(false);
    }
     }
 
-    const addWishlist= async (productId)=>{
+    const addAndDeletWishlist= async (productId)=>{
       if(!userId){
         notify("please login",'warn')
       }
       const tocken=localStorage.getItem('tocken')
+
       try {
         const res=await axios.post(`http://localhost:5000/api/users/${userId._id}/wishlist/${productId}`,{},{
           headers:{
@@ -51,7 +53,7 @@ const [openParent, setOpenParent] = useState(false);
         })
         
         notify(`${res.data.messege}`,'success')
-        setiswishlist(true)
+        
       } catch (error) {
         console.log(error,'error to add to wishlist');
       }
@@ -72,10 +74,7 @@ const [openParent, setOpenParent] = useState(false);
        setiswishlist(false)  
           }catch(error){
               console.log(error,'error to delete');
-              
           }
-     
-
   }
 
 
@@ -96,10 +95,10 @@ const [openParent, setOpenParent] = useState(false);
         setserachTerm,
         openParent,
         setOpenParent,
-        addWishlist,
         wishlistdeleteHandle,
         setiswishlist,
-        iswishlist
+        iswishlist,
+        addAndDeletWishlist
       }}
     >
       {children}

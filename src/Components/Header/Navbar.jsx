@@ -51,16 +51,13 @@ const userlocalStorage = localStorage.getItem("user")
           const data = res.data
           setaccount(user)
           setCartIteam(data)
-          console.log(Cart,'this is cat from abc function');
-        
-          
         }
       } catch (err) {
         console.log("errrr",err);
       }
     }
     abc()
-  }, [Cart])
+  }, [Cart,loggine])
 
   
 
@@ -72,17 +69,18 @@ const userlocalStorage = localStorage.getItem("user")
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, Logout !'
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Logouted!',
+            'Your file has been Logouted.',
             'success'
           ),
           localStorage.clear()
           setIsloggin(false)
           notify("logout complite", "warn")
+          setDropdownVisible(false)
         }
       });
     };
@@ -124,7 +122,7 @@ const userlocalStorage = localStorage.getItem("user")
 
        <Link to="/wishlist"><button className='p-1 rounded-full hover:bg-yellow-700'><IoIosHeartEmpty /></button></Link> 
 
-        <Link to="/Cart"><a className='p-1 inline-block mx-3 hover:bg-yellow-100 rounded-full' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-1'>{cartiteams.length}</span><IoCartOutline /></a></Link>
+        <Link to="/Cart"><a className='p-1 inline-block  mx-2 hover:bg-yellow-100 rounded-full' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-0'>{cartiteams.length?cartiteams.length:0}</span><IoCartOutline /></a></Link>
 
         <button className='inline-block mx-3' onClick={toggleDropdown} >{isDropdownVisible ? <RiUserFill /> : <FaRegUser />}</button>
 

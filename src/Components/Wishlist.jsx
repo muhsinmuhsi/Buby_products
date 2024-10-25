@@ -20,8 +20,9 @@ const Wishlist = () => {
                     Authorization:`${tocken}`
                 }
             })
-            setwishlist(response.data)
+            setwishlist(Array.isArray(response.data)?response.data:[])
             console.log('this is wishlist',response.data);
+            
             
 
          }catch(error){
@@ -33,22 +34,45 @@ const Wishlist = () => {
         viewWishlist()
     },[])
 
-    const wishlistdeleteHandle=async(itemsId)=>{
-        const userlocalStorage=localStorage.getItem('user');
-            const user=JSON.parse(userlocalStorage)
-            const tocken=localStorage.getItem('tocken')
-            try{
-               const res=await axios.delete(`http://localhost:5000/api/users/${user._id}/wishlist/${itemsId}/remove`,{
-            headers:{
-                Authorization:`${tocken}`
-            }
+    
+    const addAndDeletWishlist= async (productId)=>{
+      if(!userId){
+        notify("please login",'warn')
+      }
+      const tocken=localStorage.getItem('tocken')
+
+      try {
+        const res=await axios.post(`http://localhost:5000/api/users/${userId._id}/wishlist/${productId}`,{},{
+          headers:{
+            Authorization:`${tocken}`
+          }
         })
-         notify(`${res.data.messege}`,'success')  
-            }catch(error){
-                console.log(error,'error to delete');
-                
-            }
+        
+        notify(`${res.data.messege}`,'success')
+        setiswishlist(true)
+      } catch (error) {
+        console.log(error,'error to add to wishlist');
+      }
     }
+
+
+    const wishlistdeleteHandle=async(itemsId)=>{
+      const userlocalStorage=localStorage.getItem('user');
+          const user=JSON.parse(userlocalStorage)
+          const tocken=localStorage.getItem('tocken')
+          try{
+             const res=await axios.delete(`http://localhost:5000/api/users/${user._id}/wishlist/${itemsId}/remove`,{
+          headers:{
+              Authorization:`${tocken}`
+          }
+      })
+       notify(`${res.data.messege}`,'success')
+       setiswishlist(false)  
+          }catch(error){
+              console.log(error,'error to delete');
+          }
+  }
+
 
     
   return (

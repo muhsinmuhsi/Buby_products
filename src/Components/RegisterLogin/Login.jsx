@@ -11,11 +11,12 @@ import {
   } from "@material-tailwind/react";
   import { useFormik } from 'formik';
   import * as yup from 'yup'
-  import { useNavigate } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
   import axios from 'axios';
   import { createCtx } from '../../Pages/Context';
   import 'react-toastify/dist/ReactToastify.css';
   import { notify } from '../toastUtils';
+  import { RiAdminFill } from "react-icons/ri";
 
   const signupValidation=yup.object({
     email:yup.string().email("please Enter Valid email").required("please enter email"),
@@ -111,8 +112,11 @@ const Login = () => {
              >
                Sign Up 
              </Typography>
+           
              <Button variant="gradient" className='m-3' type='submit' color='gray' onClick={()=>navigate(-1)}>Back</Button>
-           </Typography>
+
+           </Typography> 
+           <button className=''> <Link to='/adminlogin'><RiAdminFill /> </Link></button>
          </CardFooter>
        </Card>
        </form>

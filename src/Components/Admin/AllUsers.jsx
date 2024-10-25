@@ -145,10 +145,10 @@ async function getusers(){
           </TableHead>
 
           <TableBody>
-            {allusers.map((items)=>(
+            {allusers.map((items,index)=>(
               <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell>
-                          {items._id}
+                          {index+1}
                         </TableCell>
                         <TableCell>
                           {items.username}
@@ -163,7 +163,7 @@ async function getusers(){
                           {items.isDeleted?
                           <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleUnblock(items._id)}><FiUserX /></Button>
                           :
-                          <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleBlock(items._id,items.name)} ><FiUserCheck /></Button>
+                          <Button className='bg-blue-500 hover:bg-blue-700' onClick={()=> handleBlock(items._id,items.username)} ><FiUserCheck /></Button>
                           }
                         </TableCell>
                         <TableCell>

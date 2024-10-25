@@ -9,11 +9,17 @@ const Allorders = () => {
     }, []);  // Run only once on mount
 
     const getorders = async () => {
+        const token = localStorage.getItem('tocken')
         try {
-            const res = await axios.get('http://localhost:3000/selledProducts')
+            const res = await axios.get('http://localhost:5000/api/admin/orders', {
+                headers: {
+                    Authorization: `${token}`
+                }
+            })
             setallorders(res.data)
+            console.log(res.data, 'This is all orders from the server');
         } catch (err) {
-            console.log(err, 'error to fetch data');
+            console.log(err, 'Error fetching data');
         }
     }
 
@@ -23,21 +29,23 @@ const Allorders = () => {
             <table className="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
-                        <th className="py-2 px-4 border-b">ID</th>
-                        <th className="py-2 px-4 border-b">Image</th>
-                        <th className="py-2 px-4 border-b">Name</th>
-                        <th className="py-2 px-4 border-b">Price</th>
+                        <th className="py-2 px-4 border">Number</th>
+                        <th className="py-2 px-4 border">Products</th>
+                        <th className="py-2 px-4 border">Paid amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {allorder.map((item) => (
-                        <tr key={item.id}>
-                            <td className="py-2 px-4 border-b">{item.id}</td>
-                            <td className="py-2 px-4 border-b">
-                                <img src={item.images} alt={item.name} className="h-12 w-12 object-cover" />
+                    {allorder.map((item, index) => (
+                        <tr key={item._id}>
+                            <td className="py-2 px-4 border">{index + 1}</td>
+                            <td className="py-2 px-4 border">
+                                {item.productId && item.productId.map((product) => (
+                                    <div key={product._id}>
+                                        {product.title}
+                                    </div>
+                                ))}
                             </td>
-                            <td className="py-2 px-4 border-b">{item.name}</td>
-                            <td className="py-2 px-4 border-b">{item.price}</td>
+                            <td className="py-2 px-4 border-b">{item.totalPrice}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -46,4 +54,4 @@ const Allorders = () => {
     )
 }
 
-export default Allorders
+export default Allorders;

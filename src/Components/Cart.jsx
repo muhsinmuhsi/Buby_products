@@ -23,7 +23,7 @@ const Cart = () => {
   const [fake,setfake]=useState(false)
 
 
-  const GrandTotal = cartiteams.reduce((total, items) => total + items.quantity * items.productId.price, 0)
+  const GrandTotal = cartiteams?.reduce((total, items) => total + items.quantity * items.productId.price, 0)
 
   const RemoveHandle = async (item) => {
     let userlocalStorage = localStorage.getItem("user")
@@ -101,7 +101,7 @@ const Cart = () => {
         const data = res.data
         console.log('this is cart product');
 
-        setCartIteam(data)
+        setCartIteam(Array.isArray(data)?data:[])
       } catch (err) {
         console.log("errrr");
 
@@ -189,7 +189,7 @@ const Cart = () => {
         color: "#3399cc",
       },
     };
- 
+  setfake(!fake)
     const rzp1 = new window.Razorpay(options);
     rzp1.on("payment.failed", function (response) {
       alert(response.error.code);
@@ -202,7 +202,12 @@ const Cart = () => {
     });
  
     rzp1.open();
+   
   };
+
+  setTimeout(() => {
+    setfake(!fake)
+  }, 5000);
 
 
   return (

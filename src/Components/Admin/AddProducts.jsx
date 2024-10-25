@@ -2,39 +2,52 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { notify } from '../toastUtils';
 import { number } from 'yup';
+import Swal from 'sweetalert2';
 
 const AddProducts = () => {
   const[newproduct,setnewproducts]=useState({
-    name: '',
+    title: '',
     description: '',
     price: number,
     category: '',
-    images: '',
-});
-
-const isIdExiste=async(id)=>{
-  try{
-    const res=await axios.get('http://localhost:3000/products')
-  const data=res.data
-    return data.some((item)=>item.id===id)
-  }catch(err){
-    console.log(err,"error to fetch id's");
-    
-  }
-  
-}
+    image:null
+})
 
 const handleChange=(e)=>{
-  const {name,value}=e.target;
-    setnewproducts({...newproduct,[name]:value})
+  const {name,value,files}=e.target;
+    setnewproducts({...newproduct,[name]:files? files[0] :value})
 }
 
 const handleSubmit=async (e)=>{
+  const tocken=localStorage.getItem('tocken')
   e.preventDefault();
+  console.log(newproduct.category,'this is new product from addroduct');
+  
   try{
-   const res= await axios.post("http://localhost:3000/products",newproduct)
+
+    const formData=new FormData()
+    formData.append('title',newproduct.title)
+    formData.append('description',newproduct.description)
+    formData.append('price',newproduct.price)
+    formData.append('category',newproduct.category)
+
+    if(newproduct.image){
+      formData.append('image',newproduct.image)
+    }else{
+      Swal.fire({
+        text:'please select an image to upload',
+        icon:'warning',
+        confirmButtonText:'ok'
+      });
+      return;
+    }
+   const res= await axios.post("http://localhost:5000/api/admin/createproducts",formData,{
+    headers:{
+      Authorization:`${tocken}`
+    }
+   })
     console.log(res.data);
-    notify("product added success fully",'success')
+    notify(`${res.data.messege}`,'success')
     
   }catch(err){
     console.log(err,'faild to add products');
@@ -48,21 +61,12 @@ const handleSubmit=async (e)=>{
             <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
             <form onSubmit={handleSubmit} >
                 <div className="mb-4">
-                <label className="block text-gray-700">Product Id</label>
-                    <input
-                        type="text"
-                        name="id"
-                       value={newproduct.id}
-                       onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
-                    />
 
                     <label className="block text-gray-700">Product Name</label>
                     <input
                         type="text"
-                        name="name"
-                       value={newproduct.name}
+                        name="title"
+                       value={newproduct.title}
                        onChange={handleChange}
                         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
@@ -103,7 +107,7 @@ const handleSubmit=async (e)=>{
                     >
                       <option value="">select</option>
                       <option value="Feeding">Feeding</option>
-                      <option value="clothes">clothes</option>
+                      <option value="clothing">clothes</option>
                       <option value="Toys">Toys</option>
                     </select>
                 </div>
@@ -111,10 +115,9 @@ const handleSubmit=async (e)=>{
                 <div className="mb-4">
                     <label className="block text-gray-700">Product Link</label>
                     <input
-                        type="text"
-                        name="images"
-                       value={newproduct.images}
-                       onChange={handleChange}
+                        type="file"
+                        name="image"  
+                        onChange={handleChange}
                         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                     />

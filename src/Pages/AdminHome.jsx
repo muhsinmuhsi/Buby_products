@@ -22,7 +22,7 @@ const AdminHome = () => {
       try {
         localStorage.clear()
 
-        notify('logout complite successfuly')
+        notify('logout complite successfuly','success')
 
       } catch (error) {
         console.log('error to logout');
@@ -41,8 +41,8 @@ const AdminHome = () => {
                             </button>
                         </Link>
 
-                        <button className='bg-blue-500 hover:bg-blue-700 rounded px-4 py-2 ml-3' 
-                        onClick={Logouthandle} ><IoIosLogOut className='inline'/> Logout </button>
+                         <button className='bg-blue-500 hover:bg-blue-700 rounded px-4 py-2 ml-3' 
+                        onClick={Logouthandle} ><IoIosLogOut className='inline'/><Link to={'/'}>Logout </Link></button>
                     </div>
                 </div>
             </nav>

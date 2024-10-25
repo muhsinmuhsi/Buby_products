@@ -17,11 +17,13 @@ import { FaHeart } from "react-icons/fa";
 
 const Products = () => {
   //feching from context
-  const { productslist, setproductlist, setCart, addToCart, setserachTerm, searchTerm ,addWishlist,
+  const { productslist, setproductlist, setCart, addToCart, setserachTerm, searchTerm ,addAndDeletWishlist,
     wishlistdeleteHandle,setiswishlist,iswishlist} = useContext(createCtx);
   const [catogery, setcatogery] = useState(productslist);
   const [ismodalopen,setismodalopen]=useState(false)
   const [product,setproduct]=useState(null)
+  const [wishlist,setwishlist]=useState([])
+  const [fake,setfake]=useState(false)
 
   //product filter
   const filterItems = (cartitem) => {
@@ -44,7 +46,7 @@ const Products = () => {
           }
         });
         setproductlist(response?.data?.data);
-        
+         
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -55,7 +57,7 @@ const Products = () => {
   useEffect(() => {
     if (searchTerm) {
       const searchResult = productslist.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setcatogery(searchResult);
     } else {
@@ -83,6 +85,35 @@ const Products = () => {
     
   }
 
+  useEffect(()=>{
+    getwishlist()
+  },[fake])
+
+  const getwishlist=async()=>{
+    const userlocalStorage=localStorage.getItem('user')
+    const userId=JSON.parse(userlocalStorage)
+    const tocken=localStorage.getItem('tocken')
+    try {
+      const res=await axios.get(`http://localhost:5000/api/users/${userId._id}/wishlist/`,{
+         headers:{
+          Authorization:`${tocken}`
+         }
+      })
+      setwishlist(Array.isArray(res.data) ? res.data : []);
+      console.log(wishlist,'tis from getwishlist');
+      
+      console.log(res.data,'this from getwishlist products');
+      
+    } catch (error) {
+      console.log(error,'error to fetch wishlist');
+      
+    }
+  }
+  const wishlisthandle=(itemsId)=>{
+    addAndDeletWishlist(itemsId)
+    setfake(!fake)
+  }
+
 
   return (
 
@@ -100,8 +131,10 @@ const Products = () => {
         {catogery.map((items, index) => (
           <Card key={index} className="hover:scale-105 duration-200" >
             <CardHeader shadow={true} floated={false} className="h-60" >
-              <button className='p-1 inline-block' onClick={()=>iswishlist?addWishlist(items._id):wishlistdeleteHandle(items._id)}>{iswishlist?<FaHeart />:<FiHeart />}
-              </button>
+              <button className='p-1 inline-block' onClick={()=>wishlisthandle(items._id)}>{Array.isArray(wishlist) && wishlist.find((item) => item.productId._id === items._id)
+             ? <FaHeart />
+             : <FiHeart />}
+              </button> 
               <img
                 src={items.image}
                 alt="card-image"
