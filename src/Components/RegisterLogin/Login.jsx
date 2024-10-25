@@ -11,11 +11,12 @@ import {
   } from "@material-tailwind/react";
   import { useFormik } from 'formik';
   import * as yup from 'yup'
-  import { useNavigate } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
   import axios from 'axios';
   import { createCtx } from '../../Pages/Context';
   import 'react-toastify/dist/ReactToastify.css';
   import { notify } from '../toastUtils';
+  import { RiAdminFill } from "react-icons/ri";
 
   const signupValidation=yup.object({
     email:yup.string().email("please Enter Valid email").required("please enter email"),
@@ -34,45 +35,44 @@ import {
 const Login = () => {
     let navigate=useNavigate()
 
-
-const chackUserExists=async (email)=>{
-    const response=await axios.get("http://localhost:3000/users")
-    
-    
-    const user=response.data.find((user1)=>user1.email===email)
-    localStorage.setItem("id",user.id)
-    return response.data.find((user)=>user.email===email) !== undefined;
-  }
-
-
     const {values,handleBlur,handleChange,handleSubmit, errors}=useFormik({
         initialValues:initiolvalue,
         validationSchema:signupValidation, 
-        onSubmit:async(values)=>{
-            console.log(values);
-            
-            if(await chackUserExists(values.email)){
-              notify("login complited success fully", "success")
-              
-               navigate('/')
+    onSubmit:async(values)=>{
+     try{
+      const response = await axios.post("http://localhost:5000/api/users/login",{
+        email:values.email,
+        password:values.password
+      });
         
-            }else{
-                notify("account not found","error")
-            }
+      if(response.status===200){
+        const {tocken,user}=response.data;
 
+        localStorage.setItem('tocken',tocken)
+        localStorage.setItem('user',JSON.stringify(user))
+
+        navigate('/');
+        notify('login complite successfully','success');
+      }
+     }catch(error){
+        notify("Invalid email or password", "error")
+        console.log(error,'this is errorelkjl');
+        
+     }
+     
         }
     })
 
   return (
     <div className='flex justify-center' >
     <form onSubmit={handleSubmit}>
-       <Card  className="w-96  ">
+       <Card  className="w-96  bg-yellow-500 ">
          <CardHeader
            variant="gradient"
-           color="yellow"
+           color="gray"
            className="mb-4 grid h-28 place-items-center"
          >
-           <Typography variant="h3" color="black">
+           <Typography variant="h3" color="white">
              Sign In
            </Typography>
          </CardHeader>
@@ -97,7 +97,7 @@ const chackUserExists=async (email)=>{
            </div>
          </CardBody>
          <CardFooter className="pt-0">
-           <Button variant="gradient" fullWidth color='yellow' type='submit'>
+           <Button variant="gradient" fullWidth color='gray' type='submit'>
              Submit
            </Button>
            <Typography variant="small" className="mt-6 flex justify-center">
@@ -108,11 +108,15 @@ const chackUserExists=async (email)=>{
                variant="small"
                color="blue-gray"
                className="ml-1 font-bold"
+               onClick={()=>navigate('/Regisrter')}
              >
-               Sign Up
+               Sign Up 
              </Typography>
-             <Button variant="gradient" className='m-3' type='submit' color='yellow' onClick={()=>navigate(-1)}>Back</Button>
-           </Typography>
+           
+             <Button variant="gradient" className='m-3' type='submit' color='gray' onClick={()=>navigate(-1)}>Back</Button>
+
+           </Typography> 
+           <button className=''> <Link to='/adminlogin'><RiAdminFill /> </Link></button>
          </CardFooter>
        </Card>
        </form>

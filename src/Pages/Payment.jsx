@@ -62,16 +62,33 @@ const Payment = () => {
       
     }
 
-    const payproceed= async()=>{
-      try{
-        const res=await axios.patch(`http://localhost:3000/users/${userId}`,{orderedProducts:orderedProducts})
-        notify("payment complited ","info")
-      }catch(arr){
-        console.log(arr);
+    const payproceed = async () => {
+      try {
+        // Fetch current user's ordered products
+        const userResponse = await axios.get(`http://localhost:3000/users/${userId}`);
+        const currentOrderedProducts = userResponse.data.orderedProducts || [];
         
+        // Update the ordered products for the current user
+        const updatedOrderedProducts = [...currentOrderedProducts, ...orderedProducts];
+        await axios.patch(`http://localhost:3000/users/${userId}`, { orderedProducts: updatedOrderedProducts });
+    
+        // Fetch all sold products
+        const allOrdersResponse = await axios.get('http://localhost:3000/selledProducts');
+        const allorderedProducts = allOrdersResponse.data || [];
+    
+        // Update all sold products
+        const updateAllorders = [...allorderedProducts, ...orderedProducts];
+        await axios.post('http://localhost:3000/selledProducts', updateAllorders);
+    
+        notify("Payment completed", "info");
+    
+      } catch (error) {
+        console.log(error);
       }
-
-    }
+      console.log(orderedProducts, 'orderedProducts');
+    };
+    
+    
     
     const GarandTotal=orderedProducts.reduce((total,items)=>total + items.stock_quantity* items.price,0)
 
@@ -80,7 +97,7 @@ const Payment = () => {
 
     return (
         <>
-          <div className='flex flex-row justify-between flex-wrap h-14 bg-yellow-500'>
+          <div className='flex flex-row justify-between flex-wrap h-14 bg-yellow-200'>
             <img src={logo} alt="Logo" />
             <Typography variant='h1' color='black' className=''>Checkout</Typography>
            <Link to={'/'}> <div className='mx-5 my-3'><MdHome className='size-8'/></div></Link>
