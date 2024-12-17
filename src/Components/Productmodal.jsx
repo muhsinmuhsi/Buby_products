@@ -1,11 +1,23 @@
 
 import React from "react";
 
+const overlayStyle = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  zIndex: 999,
+};
+
+
 const ProductModal=({product,isOpen,onClose})=>{
 
  if(!isOpen) return null;
 
     return (
+      <>
+      <div style={overlayStyle} onClick={onClose}></div>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-6 w-11/12 md:w-1/2 lg:w-1/3">
             <div className="flex justify-between items-center">
@@ -27,6 +39,7 @@ const ProductModal=({product,isOpen,onClose})=>{
             </button>
           </div>
         </div>
+        </>
       );
     };
 

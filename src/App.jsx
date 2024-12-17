@@ -23,6 +23,7 @@ import Allorders from './Components/Admin/Allorders'
 import Productmodal from './Components/Productmodal'
 import Wishlist from './Components/Wishlist'
 import AdminLogin from './Components/Admin/AdminLogin'
+import Catogeryproducts from './Pages/Catogeryproducts'
 
 
 
@@ -49,12 +50,13 @@ function App() {
   {/* <Route path='/allusers' element={<AllUsers/>}/>
   <Route path='/addproducts' element={<AddProducts/>}/>
   <Route path='/Editproducts' element={<EditProducts/>}/> */}
-  <Route path='/Userdetails/:id' element={<UserDetails/>}/> 
+  <Route path='Userdetails/:id' element={<UserDetails/>}/> 
   {/* <Route path='/EditModal' element={<NestedModal/>}/>
   <Route path='/Allorders' element={<Allorders/>}/>
   <Route path='/productid' element={<Productmodal/>}/> */}
   <Route path='/wishlist' element={<Wishlist/>}/>
   <Route path='/adminlogin' element={<AdminLogin/>}/>
+  <Route path='products/Catogery' element={<Catogeryproducts/>}/>
 
 
 

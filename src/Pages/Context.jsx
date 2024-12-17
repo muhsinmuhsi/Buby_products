@@ -1,5 +1,4 @@
-import React, { createContext,useEffect,useReducer,useState} from 'react'
-import Products from '../Components/Products'
+import  { createContext,useState} from 'react'
 import axios from 'axios'
 import { notify } from '../Components/toastUtils'
 
@@ -12,10 +11,30 @@ export const createCtx=createContext()
     const[Cart,setCart]=useState(false)
     const [user,setuser]=useState([])
     const [iswishlist,setiswishlist]=useState([])
+    const [productcatrogery,setproductcatogery]=useState([])
     
 const userfull =   localStorage.getItem("user")
 const userId=JSON.parse(userfull)
 const [openParent, setOpenParent] = useState(false);
+
+
+const buywithcatogery= (async(catogery)=>{
+  try {
+    const tocken=localStorage.getItem('tocken')
+    const res= await axios.get(`http://localhost:5000/api/users/products/category/${catogery}`,{
+      headers:{
+        Authorization:`${tocken}`
+      }
+    })
+
+    setproductcatogery(res.data)
+    console.log(res.data);
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+})
 
 
     const addToCart= async(cartProduct)=>{
@@ -98,7 +117,9 @@ const [openParent, setOpenParent] = useState(false);
         wishlistdeleteHandle,
         setiswishlist,
         iswishlist,
-        addAndDeletWishlist
+        addAndDeletWishlist,
+        buywithcatogery,
+        productcatrogery
       }}
     >
       {children}

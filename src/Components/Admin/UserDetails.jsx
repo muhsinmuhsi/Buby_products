@@ -1,83 +1,85 @@
-import { Card, typography, Typography } from '@material-tailwind/react';
-import axios from 'axios';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Card } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-
-const UserDetails = () => {
-    const navigate=useNavigate()
-   const { id } = useParams();
+const UserDetails = ({ onClose, userId, userdetails }) => {
    const [details, setDetails] = useState(null);
 
    useEffect(() => {
-      getUsers();
-   }, []);
+      // Fetch user details when userId changes and userdetails is true (modal is open)
+      const getUsers = async () => {
+         const tocken = localStorage.getItem('tocken');
+         console.log(tocken,'this is tocken frmo ')
+         try {
+            const res = await axios.get(`http://localhost:5000/api/admin/user/${userId}`, {
+               headers: {
+                  Authorization: `${tocken}`,
+               },
+            });
+            setDetails(res.data);
+         } catch (err) {
+            console.error('Error fetching user details:', err);
+         }
+      };
 
-   const getUsers = async () => {
-      const tocken=localStorage.getItem('tocken')
-      try {
-         const res = await axios.get(`http://localhost:5000/api/admin/user/${id}`,{
-            headers:{
-               Authorization:`${tocken}`
-            }
-         });
-         setDetails(res.data);
-      } catch (err) {
-         console.log(err, "error to fetch data in userdetails");
+      if (userId && userdetails) {
+         getUsers();
       }
-   };
+   }, [userId, userdetails]);
 
-   if (!details) {
-      return <div>Loading.....</div>;
-   }
+   if (!userdetails) return null; // Don't render if modal is not open
+   if (!details) return <div>Loading...</div>; // Display loading while waiting for data
 
    return (
-      <>
-         {/* <nav className="bg-gradient-to-r from-blue-700 to-indigo-700  p-4 text-white">
-            <div className="container mx-auto flex justify-between">
-               {/* <div className="text-lg font-semibold">Admin Panel</div> */}
-               {/* <div>
-                  {/* <button onClick={()=>navigate('/')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Home2</button> */}
-               {/* </div>
-            </div>
-         // </nav> */}
+      <Dialog open={userdetails} onClose={onClose} maxWidth="md" fullWidth>
+         <DialogTitle className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white text-center">
+            {details.username}'s Details
+         </DialogTitle>
 
-         <div className='text-center my-8'>
-            <Card className='text-white bg-gradient-to-r from-blue-700 to-indigo-700 p-6 max-w-xl mx-auto rounded-lg shadow-lg'>
-               <Typography variant='h4' className="mb-4">
-                  {details.username}'s Details
-               </Typography>
-
-               <Typography className="mb-2">
+         <DialogContent className='bg-gradient-to-r from-blue-700 to-indigo-700'>
+            <Card className="text-center p-6  max-w-xl mx-auto rounded-lg shadow-lg">
+               <Typography variant="h6" className="mb-4 bg-blue-gray-100 rounded-full">
                   <span className="font-semibold">Email:</span> {details.email}
                </Typography>
 
-               <Typography className="mb-2">
-                  <span className="font-semibold">Password:</span> {details.password}
-               </Typography>
-               <Typography variant='h5' className="mt-6 mb-4">
+               <Typography variant="h5" className="mt-6 mb-4">
                   {details.username}'s Ordered Products
                </Typography>
 
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {details.orderedProducts&&details.orderedProducts.map((item, index) => (
-                     <Card key={index} className="bg-white p-4 rounded-lg shadow-lg">
-                        <img src={item.images} alt={item.name} className='w-full h-64 object-cover mb-4 rounded-md'/>
-                        <Typography className="text-gray-800 font-semibold">
-                           {item.name}
+               <div className="flex flex-col items-center">
+                  {details.orders && details.orders.map((item, index) => (
+                     <Card key={index} className="bg-gray-100 p-4 rounded-lg shadow-md mb-4 w-3/4">
+                        <Typography className="font-semibold mb-2">ORDER.NO {index + 1}</Typography>
+                        {item.productId && item.productId.map((product) => (
+                           <div key={product._id} className="flex justify-between p-2 mb-2 bg-white rounded-lg shadow">
+                              <div className="flex flex-col">
+                                 <span className="font-semibold text-black">{product.title}</span>
+                                 <span>Price: ${product.price}</span>
+                              </div>
+                              <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-md" />
+                           </div>
+                        ))}
+                        <Typography className="text-gray-800 font-semibold mt-2">
+                           Total Price: ${item.totalPrice}
                         </Typography>
                      </Card>
                   ))}
-                  {details.orderedProducts&&details.orderedProducts.length==0?<Typography variant='h6'>No OrderedProducts Yet</Typography>:null}
+                  {details.orders && details.orders.length === 0 && (
+                     <Typography variant="body1" className="mt-4">No Ordered Products Yet</Typography>
+                  )}
                </div>
 
-               <Typography variant='h6' className="mt-4">
-                  Total Products: {details.orderedProducts&&details.orderedProducts.length}
+               <Typography variant="body1" className="mt-4">
+                  Total Products: {details.orders && details.orders.length}
                </Typography>
             </Card>
-         </div>
-      </>
-   )
-}
+         </DialogContent>
+
+         <DialogActions>
+            <Button onClick={onClose} variant="contained" color="primary">Close</Button>
+         </DialogActions>
+      </Dialog>
+   );
+};
 
 export default UserDetails;

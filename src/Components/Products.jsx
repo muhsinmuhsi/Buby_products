@@ -118,13 +118,13 @@ const Products = () => {
   return (
 
     //header
-    <div className="bg-yellow-100">
+    <div className="bg-blue-200">
       <Navbar />
-      <div className="bg-yellow-200 w-full h-auto m-3 flex justify-center space-x-4">
-        <button className="p-3 hover:bg-red-500" onClick={() => setcatogery(productslist)}>All</button>
-        <button className="p-3 hover:bg-red-500" onClick={() => filterItems("Toys")}>Toys</button>
-        <button className="p-3 hover:bg-red-500" onClick={() => filterItems("clothing")}>Clothing</button>
-        <button className="p-3 hover:bg-red-500" onClick={() => filterItems("Feeding")}>Feeding</button>
+      <div className="bg-blue-300 w-full h-auto m-3 flex justify-center space-x-4">
+        <button className="p-3 hover:bg-blue-500" onClick={() => setcatogery(productslist)}>All</button>
+        <button className="p-3 hover:bg-blue-500" onClick={() => filterItems("Toys")}>Toys</button>
+        <button className="p-3 hover:bg-blue-500" onClick={() => filterItems("clothing")}>Clothing</button>
+        <button className="p-3 hover:bg-blue-500" onClick={() => filterItems("Feeding")}>Feeding</button>
       </div>
  
      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-5" >
@@ -164,7 +164,7 @@ const Products = () => {
                 onClick={() => addToCart(items)}
                 ripple={false}
                 fullWidth={true}
-                className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-yellow-500 focus:scale-105 focus:shadow-none active:scale-100"
+                className="bg-blue-100 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-500 focus:scale-105 focus:shadow-none active:scale-100"
               >
                 Add to Cart
               </Button>

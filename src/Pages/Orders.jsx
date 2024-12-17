@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import logo from '../assets/logo.svg'
 import { Typography } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'

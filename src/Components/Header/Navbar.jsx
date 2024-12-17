@@ -102,11 +102,11 @@ const userlocalStorage = localStorage.getItem("user")
       <div className=' hidden  md:flex' >
         <div className='m-2  '>
 
-          <Link to="/" className='mr-5  hover:text-red-500 selection:text-white'> Home </Link>
-          <Link to="/shop" className='mr-5  hover:text-red-500'> Shope </Link>
-          <Link className='mr-5  hover:text-red-500'> About Us </Link>
-          <Link className='mr-5  hover:text-red-500'> Testimonial</Link>
-          <Link className='mr-5  hover:text-red-500'> Contact Us </Link>
+          <Link to="/" className='mr-5  hover:text-blue-500 selection:text-white'> Home </Link>
+          <Link to="/shop" className='mr-5  hover:text-blue-500'> Shope </Link>
+          <Link className='mr-5  hover:text-blue-500'> About Us </Link>
+          <Link className='mr-5  hover:text-blue-500'> Testimonial</Link>
+          <Link className='mr-5  hover:text-blue-500'> Contact Us </Link>
 
         </div>
       </div>
@@ -118,11 +118,12 @@ const userlocalStorage = localStorage.getItem("user")
        duration-300 rounded-full border border-gray-300 px-2 py-1 
        foucus:outline-non focus:border-1 focus:border-red-500'
         />
-        <Link to="/shop"><button className='p-1 m-1 rounded-full bg-yellow-200 hover:bg-yellow-700'><IoSearch /></button></Link>
+        <Link to="/shop"><button className='p-1 m-1 rounded-full bg-blue-200 hover:bg-blue-700'><IoSearch /></button></Link>
 
-       <Link to="/wishlist"><button className='p-1 rounded-full hover:bg-yellow-700'><IoIosHeartEmpty /></button></Link> 
+       <Link to="/wishlist"><button className='p-1 rounded-full hover:bg-blue-700'><IoIosHeartEmpty /></button></Link> 
 
-        <Link to="/Cart"><a className='p-1 inline-block  mx-2 hover:bg-yellow-100 rounded-full' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-0'>{cartiteams.length?cartiteams.length:0}</span><IoCartOutline /></a></Link>
+        <Link to="/Cart"><a className='p-1 inline-block  mx-2 hover:bg-blue-100 rounded-full' href=""><span className='w-4 h-4 bg-red-700 text-white text-sm rounded-full inline-block text-center absolute top-0'>{cartiteams.length?cartiteams.length:0}
+          </span><IoCartOutline /></a></Link>
 
         <button className='inline-block mx-3' onClick={toggleDropdown} >{isDropdownVisible ? <RiUserFill /> : <FaRegUser />}</button>
 
@@ -152,13 +153,13 @@ const userlocalStorage = localStorage.getItem("user")
 
       </div>
       {clicked && (
-        <div className='flex justify-center flex-wrap bg-slate-500  translate-x-1  w-[100vw]  h-[200px] bg-yellow-100' >
+        <div className='flex justify-center flex-wrap bg-slate-500  translate-x-1  w-[100vw]  h-[200px] bg-blue-100' >
           <div className='m-2  '>
-            <Link to="/" className='mr-5  hover:text-red-500 selection:text-white'> Home </Link>
-            <Link to="/shop" className='mr-5  hover:text-red-500'> Shope </Link>
-            <Link className='mr-5  hover:text-red-500'> About Us </Link>
-            <Link className='mr-5  hover:text-red-500'> Testimonial</Link>
-            <Link className='mr-5  hover:text-red-500'> Contact Us </Link>
+            <Link to="/" className='mr-5  hover:text-blue-500 selection:text-white'> Home </Link>
+            <Link to="/shop" className='mr-5  hover:text-blue-500'> Shope </Link>
+            <Link className='mr-5  hover:text-blue-500'> About Us </Link>
+            <Link className='mr-5  hover:text-blue-500'> Testimonial</Link>
+            <Link className='mr-5  hover:text-blue-500'> Contact Us </Link>
 
           </div>
 

@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FiUserX } from "react-icons/fi";
 import { FiUserCheck } from "react-icons/fi";
+import UserDetails from './UserDetails';
 
 
 
@@ -21,10 +22,44 @@ import { FiUserCheck } from "react-icons/fi";
 const AllUsers = () => {
   const [allusers,setallusers]=useState([])
   const [isblock,setisblock]=useState(false)
+  const [userdetails,setuserdetails]=useState(false)
+  const [userId,setuserId]=useState(null)
+  const [details, setDetails] = useState(null);
 
   useEffect(()=>{
    getusers();
   },[isblock])
+
+  const onClose=()=>{
+    setuserdetails(false)
+  }
+
+  const onOpen=()=>{
+    setuserdetails(true)
+  }
+  const detailhandle = (id) => {
+    setuserId(id);
+    setuserdetails(true); // Opens the modal
+ };
+ 
+
+
+  const getUsers = async () => {
+    const tocken=localStorage.getItem('tocken')
+    console.log('from userrr details')
+    try {
+       const res = await axios.get(`http://localhost:5000/api/admin/user/${userId}`,{
+          headers:{
+             Authorization:`${tocken}`
+          }
+       });
+       setDetails(res.data);
+       
+    } catch (err) {
+       console.log(err, "error to fetch data in userdetails");
+    }
+    
+ };
 
 
 async function getusers(){
@@ -44,21 +79,7 @@ async function getusers(){
    
    }
 
-  // const removeHandle=async(id,name)=>{
-  //  const userId=localStorage.getItem("id")
-  //   try{
-  //     if(userId!==id){
-  //       await axios.delete(`http://localhost:3000/users/${id}`)
-  //       setallusers( allusers.filter ((itmes)=> itmes.id !== id))
-  //       notify(`${name} removed success fully`,"success")
-  //     }else{
-  //       notify("this is you ","warn")
-  //     }
-    
-  //   }catch(err){
-  //     console.log(err,"error  remove user");
-      
-  //   }
+  
 
 
     //----
@@ -167,7 +188,7 @@ async function getusers(){
                           }
                         </TableCell>
                         <TableCell>
-                       <Link to={`/Userdetails/${items._id}`} ><Button className='bg-blue-500 hover:bg-blue-700'>Details</Button></Link>
+                      <Button onClick={()=>detailhandle(items._id)} className='bg-blue-500 hover:bg-blue-700'>Details</Button>
                         </TableCell>
                   </TableRow>
             ))}
@@ -176,6 +197,7 @@ async function getusers(){
         </Table>
       </TableContainer>
     </Paper>
+    <UserDetails onClose={onClose} onOpen={onOpen} userId={userId} userdetails={userdetails} details={details}/>
     </div>
   )
 }
