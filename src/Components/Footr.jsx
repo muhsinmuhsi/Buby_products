@@ -1,9 +1,8 @@
-import React from 'react';
 import { AcademicCapIcon, GlobeAltIcon, CameraIcon, BriefcaseIcon } from '@heroicons/react/24/outline';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-100 text-black py-8">
+    <footer className="bg-blue-100 text-black py-8 mt-9">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 lg:w-1/4 mb-6 hidden md:inline-block">

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import logo from "../../assets/logo.svg"
-import { json, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa6";
-import { CiSearch } from "react-icons/ci";
 import { IoMdMenu } from "react-icons/io";
 import { MdClose } from "react-icons/md";
 import { createCtx } from '../../Pages/Context';
@@ -95,7 +94,7 @@ const userlocalStorage = localStorage.getItem("user")
     setDropdownVisible(false);
   };
   return (
-    <div className='flex justify-around py-3 flex-wrap '>
+    <div className='flex justify-around py-3 flex-wrap border border-b-blue-400 '>
       <div >
         <a href='#'><img src={logo} alt='logo' /></a>
       </div>
@@ -116,7 +115,7 @@ const userlocalStorage = localStorage.getItem("user")
           onChange={(e) => setserachTerm(e.target.value)}
           className='hidden sm:hidden md:inline-block w-[200px] sm:w-[200px] hover:w-[300px] transition-all 
        duration-300 rounded-full border border-gray-300 px-2 py-1 
-       foucus:outline-non focus:border-1 focus:border-red-500'
+       focus:outline-non focus:border-1 focus:border-red-500'
         />
         <Link to="/shop"><button className='p-1 m-1 rounded-full bg-blue-200 hover:bg-blue-700'><IoSearch /></button></Link>
 

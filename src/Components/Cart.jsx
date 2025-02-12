@@ -213,9 +213,9 @@ const Cart = () => {
   return (
     <>
 
-      <div className='bg-yellow-200 ' >
+      <div className='bg-white ' >
         <Navbar />
-        <Typography variant="h1" color="white" className="mb-2 text-center bg-black rounded">Shopping  Cart</Typography>
+        <Typography variant="h2" color="black" className="mb-2 ml-7 my-5 font-poppins  rounded">Shopping  Cart</Typography>
         <div className=' '>
 
 

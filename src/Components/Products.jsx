@@ -118,7 +118,7 @@ const Products = () => {
   return (
 
     //header
-    <div className="bg-blue-200">
+    <div className="bg-white">
       <Navbar />
       <div className="bg-blue-300 w-full h-auto m-3 flex justify-center space-x-4">
         <button className="p-3 hover:bg-blue-500" onClick={() => setcatogery(productslist)}>All</button>
@@ -164,7 +164,7 @@ const Products = () => {
                 onClick={() => addToCart(items)}
                 ripple={false}
                 fullWidth={true}
-                className="bg-blue-100 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-500 focus:scale-105 focus:shadow-none active:scale-100"
+                className="bg-blue-200 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-500 focus:scale-105 focus:shadow-none active:scale-100"
               >
                 Add to Cart
               </Button>

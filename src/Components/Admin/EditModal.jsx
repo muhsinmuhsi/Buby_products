@@ -44,7 +44,7 @@ function NestedModal({ openParent, setOpenParent,productId, updateProductList })
           title: '',
           description:'',
           category:'',
-          price: number,
+          price: number, 
     },
 
 

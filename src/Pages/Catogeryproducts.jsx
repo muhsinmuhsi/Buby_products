@@ -16,14 +16,13 @@ const Catogeryproducts = () => {
 
     const {productcatrogery,addToCart}=useContext(createCtx)
 
-    console.log(productcatrogery[0].category,'this product catogeory ');
     
 
   return (
     <div className='bg-yellow-200'>
    <Navbar/>
      <div className='p-8'>
-        <h1 className='text-center  font-bold text-4xl shadow-lg '>{productcatrogery[0].category==='Feeding'?"Feeding":productcatrogery[0].category==='clothing'?'baby clothes':productcatrogery[0].category}</h1>
+        <h1 className='text-center  font-bold text-4xl shadow-lg '>{productcatrogery[0]?.category==='Feeding'?"Feeding":productcatrogery[0]?.category==='clothing'?'baby clothes':productcatrogery[0]?.category}</h1>
      </div>  
    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-5 mb-5" >
         {productcatrogery.map((items, index) => (

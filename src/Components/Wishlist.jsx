@@ -77,7 +77,7 @@ const Wishlist = () => {
     
   return (
     <>
-    <div className='bg-yellow-200 '>
+    <div className='bg-white '>
         <Navbar/>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 px-5 mb-7 mt-5 '>
        {wishlist&&wishlist.map((items,index)=>(

@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <div>
       {/* Home Header Section */}
-      <div className="bg-blue-200">
+      <div className="bg-white">
         <Navbar />
         <div className="flex justify-center  my-2 " onClick={()=>navigate('/shop')}>
           <SimpleImageSlider
@@ -69,7 +69,7 @@ const Home = () => {
 
         {/* Introduction Text */}
         <div className="p-10 text-center">
-          <p className="text-wrap hidden sm:block text-2xl">
+          <p className="text-wrap hidden sm:block text-2xl ">
             Your one-stop destination for unique, high-quality baby essentials and apparel. <br /> Discover handpicked collections designed to bring comfort, style, and joy to every baby’s journey.
           </p>
           {/* <Link to="/shop">
